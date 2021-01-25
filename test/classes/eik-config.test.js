@@ -66,6 +66,31 @@ test('cwd property', (t) => {
     t.end();
 });
 
+test('toJSON method', (t) => {
+    const config = new EikConfig(
+        {
+            name: 'name',
+            version: 'version',
+            server: 'server',
+            files: {},
+            out: 'out',
+        },
+        [['bakery', 'muffin']],
+        'pizza shop',
+    );
+    t.same(config.toJSON(), {
+        name: 'name',
+        version: 'version',
+        server: 'server',
+        files: {},
+        out: 'out',
+    });
+
+    const configNoOut = new EikConfig({});
+    t.equal(configNoOut.toJSON().out, undefined);
+    t.end();
+});
+
 test('pathsAndFiles returns expected contents', async (t) => {
     const config = new EikConfig(
         {

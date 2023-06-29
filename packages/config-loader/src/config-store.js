@@ -71,7 +71,7 @@ module.exports = {
     /**
      * Persist config changes to disk as <cwd>/eik.json
      *
-     * @param {import('../classes/eik-config')} config
+     * @param {import('./eik-config')} config
      */
     persistToDisk(config) {
         try {

@@ -3,6 +3,7 @@
   "version": "4.0.0-next.8",
   "description": "Shared validators for all Eik packages",
   "main": "src/index.js",
+  "types": "index.d.ts",
   "scripts": {
     "test": "tap --no-check-coverage",
     "test:snapshots:update": "tap --snapshot",

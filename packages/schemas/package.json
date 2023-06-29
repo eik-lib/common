@@ -3,16 +3,13 @@
   "version": "4.0.0-next.8",
   "description": "Shared schema logic for Eik packages",
   "main": "index.js",
-  "types": "index.d.ts",
-  "files": [
-    "eikjson.d.ts"
-  ],
+  "types": "./types/index.d.ts",
   "scripts": {
     "style:check": "prettier -c .",
     "style:format": "prettier -w .",
     "schema:types": "json2ts ./src/eikjson.schema.json > eikjson.d.ts",
     "schema:outdated": "npm run schema:types && git diff --exit-code HEAD:packages/schemas/eikjson.d.ts eikjson.d.ts",
-    "typecheck": "tsc",
+    "typecheck": "tsc && cp eikjson.d.ts types",
     "prepublish": "npm run typecheck",
     "test": "tap --no-check-coverage",
     "lint:fix": "eslint --fix .",

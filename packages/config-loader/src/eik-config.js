@@ -30,7 +30,7 @@ const normalizeFilesDefinition = (files) =>
     typeof files === 'string' ? { '/': files } : files;
 
 /**
- * @typedef {import('@eik/common-schemas')} EikjsonSchema
+ * @typedef {import('@eik/common-schemas').exports} EikjsonSchema
  */
 
 class EikConfig {
@@ -68,8 +68,9 @@ class EikConfig {
         this[_config].version = newVersion;
     }
 
-    /** @type {EikjsonSchema["type"]} */
+    /** @type {EikjsonSchema["type"] | typeof schemas.schema.properties.type.default} */
     get type() {
+        // @ts-ignore
         return this[_config].type || schemas.schema.properties.type.default;
     }
 

@@ -1,9 +1,9 @@
 {
   "name": "@eik/common",
   "workspaces": [
+    "packages/schemas",
     "packages/config-loader",
     "packages/utils",
-    "packages/schemas",
     "packages/validators"
   ],
   "devDependencies": {

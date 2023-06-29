@@ -13,7 +13,5 @@
     "emitDeclarationOnly": true,
     "outDir": "types"
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src"]
 }

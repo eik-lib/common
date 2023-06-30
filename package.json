@@ -1,10 +1,10 @@
 {
   "name": "@eik/common",
   "workspaces": [
+    "packages/validators",
     "packages/schemas",
-    "packages/config-loader",
     "packages/utils",
-    "packages/validators"
+    "packages/config-loader"
   ],
   "devDependencies": {
     "@semantic-release/changelog": "6.0.3",

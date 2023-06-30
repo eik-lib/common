@@ -7,28 +7,28 @@ module.exports = {
       '@semantic-release/npm',
       {
         tarballDir: 'release',
-        pkgRoot: 'packages/config-loader',
+        pkgRoot: 'packages/common-config-loader',
       },
     ],
     [
       '@semantic-release/npm',
       {
         tarballDir: 'release',
-        pkgRoot: 'packages/schemas',
+        pkgRoot: 'packages/common-schemas',
       },
     ],
     [
       '@semantic-release/npm',
       {
         tarballDir: 'release',
-        pkgRoot: 'packages/utils',
+        pkgRoot: 'packages/common-utils',
       },
     ],
     [
       '@semantic-release/npm',
       {
         tarballDir: 'release',
-        pkgRoot: 'packages/validators',
+        pkgRoot: 'packages/common-validators',
       },
     ],
     [
@@ -41,10 +41,10 @@ module.exports = {
       '@semantic-release/git',
       {
         assets: [
-          'packages/config-loader',
-          'packages/schemas',
-          'packages/utils',
-          'packages/validators',
+          'packages/common-config-loader',
+          'packages/common-schemas',
+          'packages/common-utils',
+          'packages/common-validators',
         ],
       },
     ],

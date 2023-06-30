@@ -14,8 +14,8 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@eik/common-schemas": "file:../schemas",
-    "@eik/common-utils": "file:../utils",
+    "@eik/common-schemas": "file:../common-schemas",
+    "@eik/common-utils": "file:../common-utils",
     "glob": "10.3.0",
     "is-glob": "4.0.3",
     "mime-types": "2.1.35"

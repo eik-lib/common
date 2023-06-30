@@ -13,7 +13,7 @@ const validEikConfig = {
     version: '0.0.0',
 };
 
-const baseDir = join(__dirname, '../../../../fixtures');
+const baseDir = join(__dirname, '../fixtures');
 
 test('mappings - directory given', async (t) => {
     const config = new EikConfig(

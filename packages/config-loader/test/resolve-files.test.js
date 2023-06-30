@@ -10,7 +10,7 @@ const resolveFiles = require('../src/utils/resolve-files.js');
 
 // then publish a PR and integrate into cli
 
-const fixturesPath = join(__dirname, '../../../fixtures');
+const fixturesPath = join(__dirname, './fixtures');
 
 tap.test('when source is a relative folder', async (t) => {
     const resolved = await resolveFiles({ '/': './folder' }, fixturesPath);

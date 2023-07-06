@@ -1,6 +1,6 @@
 {
   "name": "@eik/common-config-loader",
-  "version": "4.0.0-next.11",
+  "version": "4.0.0-next.12",
   "description": "Shared config loader for Eik packages",
   "main": "index.js",
   "scripts": {

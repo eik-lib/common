@@ -2,7 +2,6 @@ const express = require('express');
 const fastify = require('fastify');
 const Hapi = require('@hapi/hapi');
 const { test } = require('tap');
-const fetch = require('node-fetch');
 const stoppable = require('stoppable');
 const localAssets = require('../src/local-assets.js');
 

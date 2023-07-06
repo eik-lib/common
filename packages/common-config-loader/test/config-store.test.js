@@ -157,10 +157,7 @@ test('invalid json error', (t) => {
     try {
         configStore.findInDirectory('/pizza dir', jsonReaderStub);
     } catch (e) {
-        t.match(
-            e.message,
-            'Unexpected token',
-        );
+        t.match(e.message, 'Unexpected token');
     }
     t.end();
 });

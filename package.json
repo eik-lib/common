@@ -44,7 +44,7 @@
     "validate-npm-package-name": "^4.0.0"
   },
   "devDependencies": {
-    "@hapi/hapi": "21.3.3",
+    "@hapi/hapi": "21.3.7",
     "@semantic-release/changelog": "6.0.3",
     "@semantic-release/git": "10.0.1",
     "eslint": "8.57.0",

@@ -220,8 +220,8 @@ tap.test(
 tap.test(
     'when source is an absolute file and cwd is a different directory entirely',
     async (t) => {
-        const cwd = await fs.mkdtempSync(
-            join(os.tmpdir(), basename(__filename)),
+        const cwd = fs.mkdtempSync(
+            join(os.tmpdir(), 'resolve-files-test-file'),
         );
         const resolved = await resolveFiles(
             { '/': join(fixturesPath, 'folder/client.js') },
@@ -243,8 +243,8 @@ tap.test(
 tap.test(
     'when source is an absolute folder with glob and cwd is a different directory entirely',
     async (t) => {
-        const cwd = await fs.mkdtempSync(
-            join(os.tmpdir(), basename(__filename)),
+        const cwd = fs.mkdtempSync(
+            join(os.tmpdir(), 'resolve-files-test-glob'),
         );
         const resolved = await resolveFiles(
             { '/': join(fixturesPath, 'folder/**/*') },

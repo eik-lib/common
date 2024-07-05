@@ -51,7 +51,7 @@ tap.test(
         );
         t.equal(
             absolute,
-            join(basePath, relative),
+            join(basePath, relative).replace(/\\/g, '/'),
             '.absolute should include .basePath and .relative',
         );
         t.match(
@@ -201,7 +201,7 @@ tap.test(
         );
         t.equal(
             absolute,
-            join(basePath, relative),
+            join(basePath, relative).replace(/\\/g, '/'),
             '.absolute should include .basePath and .relative',
         );
         t.match(

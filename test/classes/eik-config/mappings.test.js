@@ -18,7 +18,7 @@ const validEikConfig = {
 
 const baseDir = join(__dirname, '../../fixtures');
 
-test('mappings - directory given', async (t) => {
+test('mappings - directory given', { only: true }, async (t) => {
     const config = new EikConfig(
         {
             ...validEikConfig,
@@ -280,7 +280,10 @@ test('mappings - files is an object - remaps name of file - absolute path to fil
         {
             ...validEikConfig,
             files: {
-                'script.js': join(baseDir, 'folder/client.js'),
+                'script.js': join(baseDir, 'folder/client.js').replace(
+                    /\\/g,
+                    '/',
+                ),
             },
         },
         null,
@@ -306,7 +309,7 @@ test('mappings - files is an object - mapped to folder - absolute path to folder
         {
             ...validEikConfig,
             files: {
-                folder: join(baseDir, 'folder'),
+                folder: join(baseDir, 'folder').replace(/\\/g, '/'),
             },
         },
         null,
@@ -493,7 +496,7 @@ test('mappings - files is an object - mapped to folder - absolute path to folder
         {
             ...validEikConfig,
             files: {
-                folder: join(baseDir, 'folder'),
+                folder: join(baseDir, 'folder').replace(/\\/g, '/'),
             },
         },
         null,

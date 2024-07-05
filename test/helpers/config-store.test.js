@@ -1,6 +1,6 @@
 import fs from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
-import { join, dirname } from 'node:path';
+import { join, dirname, sep } from 'node:path';
 import os from 'node:os';
 import { test } from 'tap';
 import configStore from '../../lib/helpers/config-store.js';
@@ -38,9 +38,9 @@ const mockPackageJSON = ({
 });
 
 test('loads from package.json', (t) => {
-    const config = configStore.findInDirectory('/pizza dir', (path) => {
+    const config = configStore.findInDirectory(`${sep}pizza dir`, (path) => {
         if (path.includes('eik.json') || path.includes('.eikrc')) return null;
-        t.match(path, '/pizza dir/package.json');
+        t.match(path, `${sep}pizza dir${sep}package.json`);
         return mockPackageJSON({
             other: { notIncluded: 'fish' },
             eik: { 'import-map': 'http://map' },
@@ -55,10 +55,10 @@ test('loads from package.json', (t) => {
 });
 
 test('loads from eik.json', (t) => {
-    const config = configStore.findInDirectory('/pizza dir', (path) => {
+    const config = configStore.findInDirectory(`${sep}pizza dir`, (path) => {
         if (path.includes('package.json') || path.includes('.eikrc'))
             return null;
-        t.match(path, '/pizza dir/eik.json');
+        t.match(path, `${sep}pizza dir${sep}eik.json`);
         return mockEikJSON();
     });
     t.equal(config.name, 'magarita');
@@ -81,7 +81,7 @@ test('loads eik.json from an exact path', (t) => {
 
 test('loads from eik.json - invalid config', (t) => {
     try {
-        configStore.findInDirectory('/pizza dir', (path) => {
+        configStore.findInDirectory(`${sep}pizza dir`, (path) => {
             if (path.includes('package.json') || path.includes('.eikrc'))
                 return null;
             return {};
@@ -98,11 +98,11 @@ test('loads from eik.json - invalid config', (t) => {
 test('package.json and eik.json not being present', (t) => {
     t.plan(1);
     try {
-        configStore.findInDirectory('/pizza dir', () => null);
+        configStore.findInDirectory(`${sep}pizza dir`, () => null);
     } catch (e) {
         t.equal(
             e.message,
-            "No package.json or eik.json file found in: '/pizza dir'",
+            `No package.json or eik.json file found in: '${sep}pizza dir'`,
         );
     }
     t.end();
@@ -116,7 +116,7 @@ test('package.json and eik.json both have eik config', (t) => {
         return {};
     };
     try {
-        configStore.findInDirectory('/pizza dir', jsonReaderStub);
+        configStore.findInDirectory(`${sep}pizza dir`, jsonReaderStub);
     } catch (e) {
         t.equal(
             e.message,
@@ -143,7 +143,10 @@ test('name is pulled from package.json if not defined in eik.json', (t) => {
         if (path.includes('eik.json')) return null;
         return {};
     };
-    const config = configStore.findInDirectory('/pizza dir', jsonReaderStub);
+    const config = configStore.findInDirectory(
+        `${sep}pizza dir`,
+        jsonReaderStub,
+    );
     t.equal(config.name, 'big pizza co');
     t.equal(config.version, '0.0.0');
     t.equal(config.server, 'https://test');
@@ -154,7 +157,7 @@ test('name is pulled from package.json if not defined in eik.json', (t) => {
 });
 
 test('tokens are present', (t) => {
-    const config = configStore.findInDirectory('/pizza dir', (path) => {
+    const config = configStore.findInDirectory(`${sep}pizza dir`, (path) => {
         if (path.includes('eik.json')) return mockEikJSON();
         if (path.includes('.eikrc'))
             return { tokens: [['http://server', 'muffins']] };
@@ -173,7 +176,7 @@ test('invalid json error', (t) => {
     };
 
     try {
-        configStore.findInDirectory('/pizza dir', jsonReaderStub);
+        configStore.findInDirectory(`${sep}pizza dir`, jsonReaderStub);
     } catch (e) {
         t.match(e.message, /Unexpected token/);
     }
@@ -183,11 +186,11 @@ test('invalid json error', (t) => {
 test('no configuration present', (t) => {
     t.plan(1);
     try {
-        configStore.findInDirectory('/pizza dir', () => {});
+        configStore.findInDirectory(`${sep}pizza dir`, () => {});
     } catch (e) {
         t.equal(
             e.message,
-            "No package.json or eik.json file found in: '/pizza dir'",
+            `No package.json or eik.json file found in: '${sep}pizza dir'`,
         );
     }
     t.end();

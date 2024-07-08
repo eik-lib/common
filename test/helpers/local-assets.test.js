@@ -91,7 +91,9 @@ test('Setup development routes for fastify', async (t) => {
 });
 
 test('Setup development routes for hapi', async (t) => {
-    const server = Hapi.Server();
+    const server = Hapi.Server({
+        host: 'localhost',
+    });
     await localAssets(server, __dirname);
     await server.start();
     const address = server.info.uri;

@@ -12,35 +12,19 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-      - name: install dependencies
-        run: |
-          npm install
-        env:
-          CI: true
-      - name: lint files
-        run: |
-          npm run lint
-        env:
-          CI: true
-      - name: style check files
-        run: |
-          npm run style:check
-        env:
-          CI: true
-      - name: typecheck files
-        run: |
-          npm run typecheck
-        env:
-          CI: true
+
+      - run: npm install
+
+      - run: npm run lint
+
+      - run: npm run typecheck
+
       - name: check eik json schema is up to date
-        run: |
-          npm run schema:outdated
-        env:
-          CI: true
-      - name: run tests
-        run: |
-          npm test
+        run: npm run schema:outdated
+
+      - run: npm test

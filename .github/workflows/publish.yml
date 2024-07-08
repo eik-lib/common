@@ -14,56 +14,25 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-      - name: install dependencies
-        run: |
-          npm install
-        env:
-          CI: true
-      - name: lint files
-        run: |
-          npm run lint
-        env:
-          CI: true
-      - name: style check files
-        run: |
-          npm run style:check
-        env:
-          CI: true
-      - name: typecheck files
-        run: |
-          npm run typecheck
-        env:
-          CI: true
-      - name: check eik json schema is up to date
-        run: |
-          npm run schema:outdated
-        env:
-          CI: true
-      - name: run tests
-        run: |
-          npm test
 
-  release:
-    name: Release
-    runs-on: ubuntu-latest
-    needs: [test]
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: npm install
-        run: |
-          npm install
-      - name: npx semantic-release
-        run: |
-          npx semantic-release
+
+      - run: npm install
+
+      - run: npm run lint
+
+      - run: npm run typecheck
+
+      - name: check eik json schema is up to date
+        run: npm run schema:outdated
+
+      - run: npm test
+
+      - name: run semantic release
+        run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

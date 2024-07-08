@@ -18,7 +18,7 @@ const validEikConfig = {
 
 const baseDir = join(__dirname, '../../fixtures');
 
-test('mappings - directory given', { only: true }, async (t) => {
+test('mappings - directory given', async (t) => {
     const config = new EikConfig(
         {
             ...validEikConfig,

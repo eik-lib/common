@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { join, basename, dirname } from 'node:path';
 import tap from 'tap';
 import resolveFiles from '../../lib/helpers/resolve-files.js';
+import { ensurePosix } from '../../lib/helpers/path-slashes.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -51,7 +52,7 @@ tap.test(
         );
         t.equal(
             absolute,
-            join(basePath, relative).replace(/\\/g, '/'),
+            ensurePosix(join(basePath, relative)),
             '.absolute should include .basePath and .relative',
         );
         t.match(
@@ -201,7 +202,7 @@ tap.test(
         );
         t.equal(
             absolute,
-            join(basePath, relative).replace(/\\/g, '/'),
+            ensurePosix(join(basePath, relative)),
             '.absolute should include .basePath and .relative',
         );
         t.match(

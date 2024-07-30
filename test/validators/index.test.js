@@ -31,14 +31,11 @@ test('.origin() - invalid values - should throw', (t) => {
     t.end();
 });
 
-test(
-    '.origin() - upper case valid value - should convert to lower case value',
-    (t) => {
-        t.equal(validators.origin('http://some-origin'), 'http://some-origin');
-        t.equal(validators.origin('http://SOME_origin'), 'http://some_origin');
-        t.end();
-    },
-);
+test('.origin() - upper case valid value - should convert to lower case value', (t) => {
+    t.equal(validators.origin('http://some-origin'), 'http://some-origin');
+    t.equal(validators.origin('http://SOME_origin'), 'http://some_origin');
+    t.end();
+});
 
 //
 // .org()
@@ -59,16 +56,13 @@ test('.org() - invalid values - should throw', (t) => {
     t.end();
 });
 
-test(
-    '.org() - upper case valid value - should convert to lower case value',
-    (t) => {
-        t.equal(validators.org('SOMEorg'), 'someorg');
-        t.equal(validators.org('some-ORG'), 'some-org');
-        t.equal(validators.org('SOME_ORG'), 'some_org');
-        t.equal(validators.org('123'), '123');
-        t.end();
-    },
-);
+test('.org() - upper case valid value - should convert to lower case value', (t) => {
+    t.equal(validators.org('SOMEorg'), 'someorg');
+    t.equal(validators.org('some-ORG'), 'some-org');
+    t.equal(validators.org('SOME_ORG'), 'some_org');
+    t.equal(validators.org('123'), '123');
+    t.end();
+});
 
 //
 // .name()

@@ -1,5 +1,5 @@
-const { test } = require('tap');
-const EikConfig = require('../../../lib/classes/eik-config');
+import { test } from 'tap';
+import EikConfig from '../../../lib/classes/eik-config.js';
 
 const validEikConfig = {
     name: 'pizza',
@@ -16,6 +16,7 @@ test('EikConfig: .type: no value given', (t) => {
 });
 
 test('EikConfig: .type: value given', (t) => {
+    // @ts-ignore
     const config = new EikConfig(validEikConfig);
     t.equal(config.type, 'npm', 'should overwrite default value');
     t.end();

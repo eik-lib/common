@@ -1,10 +1,14 @@
-const express = require('express');
-const fastify = require('fastify');
-const Hapi = require('@hapi/hapi');
-const { test } = require('tap');
-const fetch = require('node-fetch');
-const stoppable = require('stoppable');
-const localAssets = require('../../lib/helpers/local-assets');
+import { fileURLToPath } from 'node:url';
+import { dirname } from 'node:path';
+import express from 'express';
+import fastify from 'fastify';
+import Hapi from '@hapi/hapi';
+import { test } from 'tap';
+import stoppable from 'stoppable';
+import localAssets from '../../lib/helpers/local-assets.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 class Server {
     constructor() {
@@ -16,6 +20,7 @@ class Server {
             try {
                 this.server = this.app.listen(0, () => {
                     this.port = this.server.address().port;
+                    // @ts-ignore
                     resolve();
                 });
                 stoppable(this.server);
@@ -91,6 +96,7 @@ test('Setup development routes for fastify', async (t) => {
 });
 
 test('Setup development routes for hapi', async (t) => {
+    // @ts-ignore
     const server = Hapi.Server({
         host: 'localhost',
     });

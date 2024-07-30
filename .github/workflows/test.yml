@@ -1,9 +1,15 @@
-name: Run Lint and Tests
+name: Test
 
-on: push
+on:
+  push:
+    branches-ignore:
+      - main
+      - alpha
+      - beta
+      - next
 
 jobs:
-  build:
+  test:
     strategy:
       matrix:
         os: [ubuntu-latest, macOS-latest, windows-latest]
@@ -13,8 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
 
@@ -22,9 +27,8 @@ jobs:
 
       - run: npm run lint
 
-      - run: npm run typecheck
+      - run: npm run types
 
-      - name: check eik json schema is up to date
-        run: npm run schema:outdated
+      - run: npm run schema:outdated
 
       - run: npm test

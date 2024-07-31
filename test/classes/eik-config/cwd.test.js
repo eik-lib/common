@@ -1,5 +1,5 @@
-const { test } = require('tap');
-const EikConfig = require('../../../lib/classes/eik-config');
+import { test } from 'tap';
+import EikConfig from '../../../lib/classes/eik-config.js';
 
 const validEikConfig = {
     name: 'pizza',

@@ -1,9 +1,13 @@
-const { test } = require('tap');
-const { join } = require('path');
-const FileMapping = require('../../../lib/classes/file-mapping');
-const LocalFileLocation = require('../../../lib/classes/local-file-location');
-const RemoteFileLocation = require('../../../lib/classes/remote-file-location');
-const EikConfig = require('../../../lib/classes/eik-config');
+import { test } from 'tap';
+import { join, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import FileMapping from '../../../lib/classes/file-mapping.js';
+import LocalFileLocation from '../../../lib/classes/local-file-location.js';
+import RemoteFileLocation from '../../../lib/classes/remote-file-location.js';
+import EikConfig from '../../../lib/classes/eik-config.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const validEikConfig = {
     name: 'pizza',

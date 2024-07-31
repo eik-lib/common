@@ -1,9 +1,12 @@
-const fs = require('fs');
-const os = require('os');
-const { join, basename } = require('path');
-const tap = require('tap');
-const resolveFiles = require('../../lib/helpers/resolve-files');
+import fs from 'node:fs';
+import os from 'node:os';
+import { fileURLToPath } from 'node:url';
+import { join, basename, dirname } from 'node:path';
+import tap from 'tap';
+import resolveFiles from '../../lib/helpers/resolve-files.js';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 // then integrate the resolve-files function into eik-config.
 
 // fix all tests

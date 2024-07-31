@@ -1,5 +1,7 @@
-const { test } = require('tap');
-const { validate } = require('../../lib/schemas/index');
+import { test } from 'tap';
+import schemas from '../../lib/schemas/index.js';
+
+const { validate } = schemas;
 
 test('validate basic eik JSON file', (t) => {
     const result = validate.eikJSON({
@@ -22,6 +24,7 @@ test('validate asset manifest - all props invalid', (t) => {
     });
 
     t.same(result.value, { name: '', type: 'package' });
+    // @ts-ignore
     t.equal(result.error[0].message, `must have required property 'server'`);
     t.end();
 });
@@ -64,8 +67,10 @@ test('validate version: valid', (t) => {
 test('validate type: empty string', (t) => {
     const result = validate.type('');
     t.equal(result.value, '');
+    // @ts-ignore
     t.equal(result.error.length, 1);
     t.equal(
+        // @ts-ignore
         result.error[0].message,
         'must be equal to one of the allowed values',
     );
@@ -108,6 +113,7 @@ test('validate server: valid', (t) => {
 test('validate server: invalid', (t) => {
     const result = validate.server('localhost');
     t.equal(result.value, 'localhost');
+    // @ts-ignore
     t.equal(result.error.length, 1);
     t.end();
 });
@@ -122,6 +128,7 @@ test('validate files: valid', (t) => {
 test('validate files: invalid', (t) => {
     const result = validate.files({ asd: 1 });
     t.same(result.value, { asd: 1 });
+    // @ts-ignore
     t.equal(result.error.length, 3);
     t.end();
 });
@@ -129,6 +136,7 @@ test('validate files: invalid', (t) => {
 test('validate files: invalid', (t) => {
     const result = validate.files({});
     t.same(result.value, {});
+    // @ts-ignore
     t.equal(result.error.length, 3);
     t.end();
 });
@@ -156,6 +164,7 @@ test('validate importMap: valid array', (t) => {
 test('validate importMap: invalid string', (t) => {
     const result = validate.importMap('');
     t.same(result.value, '');
+    // @ts-ignore
     t.equal(result.error.length, 3);
     t.end();
 });
@@ -163,6 +172,7 @@ test('validate importMap: invalid string', (t) => {
 test('validate importMap: invalid array', (t) => {
     const result = validate.importMap(['']);
     t.same(result.value, ['']);
+    // @ts-ignore
     t.equal(result.error.length, 3);
     t.end();
 });
@@ -177,6 +187,7 @@ test('validate out: valid', (t) => {
 test('validate out: invalid', (t) => {
     const result = validate.out('');
     t.same(result.value, '');
+    // @ts-ignore
     t.equal(result.error.length, 1);
     t.end();
 });

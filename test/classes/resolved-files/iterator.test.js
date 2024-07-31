@@ -1,7 +1,8 @@
-const tap = require('tap');
-const ResolvedFiles = require('../../../lib/classes/resolved-files');
+import { test } from 'tap';
+import ResolvedFiles from '../../../lib/classes/resolved-files.js';
 
-tap.test('ResolvedFiles: iterator for ./my/file.js', (t) => {
+test('ResolvedFiles: iterator for ./my/file.js', (t) => {
+    // @ts-ignore
     const subject = new ResolvedFiles(['./my/file.js', './my/file.css'], {
         basePath: '/base/path',
         definition: ['dest', 'src'],

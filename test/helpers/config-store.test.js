@@ -1,9 +1,13 @@
-const { test } = require('tap');
-const fs = require('fs').promises;
-const { join } = require('path');
-const os = require('os');
-const configStore = require('../../lib/helpers/config-store');
-const EikConfig = require('../../lib/classes/eik-config');
+import fs from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
+import { join, dirname } from 'node:path';
+import os from 'node:os';
+import { test } from 'tap';
+import configStore from '../../lib/helpers/config-store.js';
+import EikConfig from '../../lib/classes/eik-config.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 function mkdirTempDir() {
     return fs.mkdtemp(join(os.tmpdir(), 'eik-config'));
@@ -44,6 +48,7 @@ test('loads from package.json', (t) => {
     });
     t.equal(config.name, 'magarita');
     t.equal(config.version, '0.0.0');
+    // @ts-ignore
     t.equal(config.notIncluded, undefined);
     t.same(config.map, ['http://map']);
     t.end();
@@ -194,6 +199,7 @@ test('saves config to disk', async (t) => {
         path,
     );
 
+    // @ts-ignore
     configStore.persistToDisk(config);
 
     const persistedConfig = configStore.findInDirectory(path);
@@ -204,6 +210,7 @@ test('saves config to disk', async (t) => {
 test('saves config to disk - invalid config - passed config not a instance of EikConfig', async (t) => {
     const config = {};
     try {
+        // @ts-ignore
         configStore.persistToDisk(config);
     } catch (err) {
         t.match(
@@ -218,6 +225,7 @@ test('saves config to disk - invalid config - passed config not a instance of Ei
 test('saves config to disk - invalid config', async (t) => {
     const config = new EikConfig(null);
     try {
+        // @ts-ignore
         configStore.persistToDisk(config);
     } catch (err) {
         t.match(

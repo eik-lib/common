@@ -1,10 +1,15 @@
 {
-  "extends": ["airbnb-base", "prettier"],
+  "extends": ["eslint:recommended", "plugin:prettier/recommended"],
   "plugins": ["prettier"],
-  "rules": {
-    "strict": [0, "global"],
-    "class-methods-use-this": [0],
-    "no-underscore-dangle": [0],
-    "no-restricted-syntax": [0]
+  "env": { "es6": true, "node": true },
+  "parser": "@babel/eslint-parser",
+  "ignorePatterns": ["build", "public"],
+  "parserOptions": {
+    "requireConfigFile": false,
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "babelOptions": {
+      "plugins": ["@babel/plugin-syntax-import-assertions"]
+    }
   }
 }

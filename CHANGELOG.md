@@ -1,3 +1,23 @@
+# [4.0.0-next.5](https://github.com/eik-lib/common/compare/v4.0.0-next.4...v4.0.0-next.5) (2024-08-01)
+
+
+### Bug Fixes
+
+* **deps:** update dependency glob to v8 ([#225](https://github.com/eik-lib/common/issues/225)) ([fd01a56](https://github.com/eik-lib/common/commit/fd01a566b404164bdc847cc7a1803b124e131e41))
+* **deps:** update dependency validate-npm-package-name to v4 ([#222](https://github.com/eik-lib/common/issues/222)) ([c3721ab](https://github.com/eik-lib/common/commit/c3721abf058c93d4e500945c3c014c748c1f2acd))
+* update ajv-formats ([131dbf2](https://github.com/eik-lib/common/commit/131dbf25fcf8e2d128ac9e660076b538c441fa55))
+* update validate-npm-package-name ([00c57e7](https://github.com/eik-lib/common/commit/00c57e7a2c6f0c2666493ebb1a6eae446582037f))
+
+
+### chore
+
+* convert codebase to ESM ([1a83a26](https://github.com/eik-lib/common/commit/1a83a261d2cc2ce2c921eaf50c843d0e8989d662))
+
+
+### BREAKING CHANGES
+
+* Codebase is now ESM only, Common JS is no longer supported.
+
 # [4.0.0-next.5](https://github.com/eik-lib/common/compare/v4.0.0-next.4...v4.0.0-next.5) (2024-07-31)
 
 

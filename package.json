@@ -38,7 +38,7 @@
     "is-glob": "^4.0.1",
     "mime-types": "^2.1.29",
     "semver": "^7.0.0",
-    "validate-npm-package-name": "^4.0.0"
+    "validate-npm-package-name": "^5.0.1"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.25.1",

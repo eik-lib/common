@@ -22,7 +22,6 @@ test('EikConfig: .cwd set to /some/path/', (t) => {
 
 test('EikConfig: .cwd set to invalid relative path some/path', (t) => {
     try {
-        // eslint-disable-next-line no-new
         new EikConfig(validEikConfig, [], 'some/path');
     } catch (err) {
         t.match(

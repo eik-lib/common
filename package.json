@@ -47,6 +47,7 @@
     "@hapi/hapi": "21.3.10",
     "@semantic-release/changelog": "6.0.3",
     "@semantic-release/git": "10.0.1",
+    "@types/glob": "^8.1.0",
     "@types/is-glob": "^4.0.4",
     "@types/semver": "^7.5.8",
     "@types/validate-npm-package-name": "^4.0.2",

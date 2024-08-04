@@ -43,7 +43,7 @@ tap.test(
             );
         }
         const asArray = Array.from(resolved[0]);
-        const { relative, absolute, basePath } = asArray[0];
+        const { relative, absolute, basePath } = asArray[1];
         t.equal(
             relative,
             'client.js',
@@ -193,7 +193,7 @@ tap.test(
             );
         }
         const asArray = Array.from(resolved[0]);
-        const { relative, absolute, basePath } = asArray[0];
+        const { relative, absolute, basePath } = asArray[1];
         t.equal(
             relative,
             'client.js',

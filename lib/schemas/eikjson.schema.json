@@ -3,6 +3,10 @@
   "additionalProperties": false,
   "type": "object",
   "properties": {
+    "$schema": {
+      "type": "string",
+      "format": "uri"
+    },
     "server": {
       "description": "The URL address of the Eik server where packages are published to.",
       "type": "string",

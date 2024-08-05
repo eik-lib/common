@@ -6,6 +6,7 @@
  */
 
 export interface EikjsonSchema {
+  $schema?: string;
   /**
    * The URL address of the Eik server where packages are published to.
    */

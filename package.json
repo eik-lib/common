@@ -36,7 +36,7 @@
     "ajv-formats": "3.0.1",
     "glob": "11.0.0",
     "is-glob": "4.0.3",
-    "mime-types": "2.1.29",
+    "mime-types": "2.1.35",
     "semver": "7.5.2",
     "validate-npm-package-name": "5.0.1"
   },

@@ -1,8 +1,6 @@
-'use strict';
-
-const { Readable } = require('stream');
-const { test } = require('tap');
-const ReadFile = require('../../lib/classes/read-file');
+import { Readable } from 'stream';
+import { test } from 'tap';
+import ReadFile from '../../lib/classes/read-file.js';
 
 test('ReadFile() - Object type', (t) => {
     const obj = new ReadFile();

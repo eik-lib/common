@@ -1,6 +1,10 @@
-# Eik Commons
+# Eik Common
 
 This package contains common utilities and schemas
+
+## ESM ONLY
+
+From v4, this module is ESM only and cannot be used with Common JS.
 
 ## APIs
 
@@ -11,7 +15,7 @@ This package contains common utilities and schemas
 Importing schemas
 
 ```js
-const { schemas, assert } = require('@eik/common');
+import { schemas, assert } from '@eik/common';
 ```
 
 Validating an `eik.json` file
@@ -127,8 +131,8 @@ assert.out('./.eik');
 A function to help development by mounting development routes to an Express.js or Fastify app based on values defined in `eik.json`
 
 ```js
-const express = require('express');
-const { helpers } = require('@eik/common');
+import express from 'express';
+import { helpers } from '@eik/common';
 const app = express();
 await helpers.localAssets(app);
 ```
@@ -179,7 +183,7 @@ Given the following `eik.json` file:
 and the following call to packageURL
 
 ```js
-const { helpers } = require('@eik/common');
+import { helpers } from '@eik/common';
 const url = await helpers.packageURL('esm.js');
 ```
 

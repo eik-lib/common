@@ -1,5 +1,5 @@
-const { test } = require('tap');
-const EikConfig = require('../../../lib/classes/eik-config');
+import { test } from 'tap';
+import EikConfig from '../../../lib/classes/eik-config.js';
 
 const validEikConfig = {
     name: 'pizza',
@@ -22,7 +22,6 @@ test('EikConfig: .cwd set to /some/path/', (t) => {
 
 test('EikConfig: .cwd set to invalid relative path some/path', (t) => {
     try {
-        // eslint-disable-next-line no-new
         new EikConfig(validEikConfig, [], 'some/path');
     } catch (err) {
         t.match(

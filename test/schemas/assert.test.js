@@ -1,5 +1,7 @@
-const { test } = require('tap');
-const { assert } = require('../../lib/schemas/index');
+import { test } from 'tap';
+import schemas from '../../lib/schemas/index.js';
+
+const { assert } = schemas;
 
 test('assert basic eik JSON file', (t) => {
     t.doesNotThrow(() => {

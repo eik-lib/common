@@ -1,3 +1,10 @@
+## [4.0.1](https://github.com/eik-lib/common/compare/v4.0.0...v4.0.1) (2024-08-06)
+
+
+### Bug Fixes
+
+* use correct method name for loading config file from path ([9d01ca4](https://github.com/eik-lib/common/commit/9d01ca46574ee5a9f153835f8778640a9b20625b))
+
 # [4.0.0](https://github.com/eik-lib/common/compare/v3.0.1...v4.0.0) (2024-08-06)
 
 

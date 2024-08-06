@@ -32,7 +32,7 @@
   },
   "homepage": "https://github.com/eik-lib/common#readme",
   "dependencies": {
-    "ajv": "8.6.2",
+    "ajv": "8.17.1",
     "ajv-formats": "3.0.1",
     "glob": "11.0.0",
     "is-glob": "4.0.3",

@@ -1,3 +1,10 @@
+## [4.0.4](https://github.com/eik-lib/common/compare/v4.0.3...v4.0.4) (2024-08-06)
+
+
+### Bug Fixes
+
+* **deps:** update dependency mime-types to v2.1.35 ([a9f509e](https://github.com/eik-lib/common/commit/a9f509eb38d9e24ab5a0661ab50049f5bca4e06b))
+
 ## [4.0.3](https://github.com/eik-lib/common/compare/v4.0.2...v4.0.3) (2024-08-06)
 
 

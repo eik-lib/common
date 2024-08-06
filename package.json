@@ -37,7 +37,7 @@
     "glob": "11.0.0",
     "is-glob": "4.0.3",
     "mime-types": "2.1.35",
-    "semver": "7.5.2",
+    "semver": "7.6.3",
     "validate-npm-package-name": "5.0.1"
   },
   "devDependencies": {

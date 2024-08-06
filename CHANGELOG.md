@@ -1,3 +1,10 @@
+## [4.0.5](https://github.com/eik-lib/common/compare/v4.0.4...v4.0.5) (2024-08-06)
+
+
+### Bug Fixes
+
+* **deps:** update dependency ajv to v8.17.1 ([cfa2b1c](https://github.com/eik-lib/common/commit/cfa2b1ca23dbdff25abc83169fd0f4cb066491e7))
+
 ## [4.0.4](https://github.com/eik-lib/common/compare/v4.0.3...v4.0.4) (2024-08-06)
 
 

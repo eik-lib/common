@@ -65,6 +65,20 @@ test('loads from eik.json', (t) => {
     t.end();
 });
 
+test('loads eik.json from an exact path', (t) => {
+    const config = configStore.loadFromPath(
+        '/exact/pizza/dir/eik.json',
+        (path) => {
+            if (path.includes('package.json') || path.includes('.eikrc'))
+                return null;
+            t.match(path, '/exact/pizza/dir/eik.json');
+            return mockEikJSON();
+        },
+    );
+    t.equal(config.name, 'magarita');
+    t.end();
+});
+
 test('loads from eik.json - invalid config', (t) => {
     try {
         configStore.findInDirectory('/pizza dir', (path) => {

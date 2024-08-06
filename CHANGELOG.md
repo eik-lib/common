@@ -1,3 +1,10 @@
+## [4.0.3](https://github.com/eik-lib/common/compare/v4.0.2...v4.0.3) (2024-08-06)
+
+
+### Bug Fixes
+
+* **deps:** update dependency is-glob to v4.0.3 ([247919d](https://github.com/eik-lib/common/commit/247919d9551cb351d6b5f179bddba6d58a7d85a4))
+
 ## [4.0.2](https://github.com/eik-lib/common/compare/v4.0.1...v4.0.2) (2024-08-06)
 
 

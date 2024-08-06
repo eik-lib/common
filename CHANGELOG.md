@@ -1,3 +1,10 @@
+## [4.0.2](https://github.com/eik-lib/common/compare/v4.0.1...v4.0.2) (2024-08-06)
+
+
+### Bug Fixes
+
+* **deps:** update dependency semver to v7.5.2 [security] ([aa1b38f](https://github.com/eik-lib/common/commit/aa1b38fd6e1e08c443ece37af434f364a3a972a1))
+
 ## [4.0.1](https://github.com/eik-lib/common/compare/v4.0.0...v4.0.1) (2024-08-06)
 
 

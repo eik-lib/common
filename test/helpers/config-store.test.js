@@ -66,7 +66,7 @@ test('loads from eik.json', (t) => {
 });
 
 test('loads eik.json from an exact path', (t) => {
-    const config = configStore.loadExact(
+    const config = configStore.loadFromPath(
         '/exact/pizza/dir/eik.json',
         (path) => {
             if (path.includes('package.json') || path.includes('.eikrc'))

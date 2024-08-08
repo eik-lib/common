@@ -43,6 +43,7 @@
   "devDependencies": {
     "@babel/eslint-parser": "7.25.1",
     "@babel/plugin-syntax-import-assertions": "7.24.7",
+    "@eik/semantic-release-config": "1.0.0",
     "@eslint/js": "9.8.0",
     "@hapi/hapi": "21.3.10",
     "@semantic-release/changelog": "6.0.3",

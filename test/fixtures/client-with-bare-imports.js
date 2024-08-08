@@ -1,3 +1,4 @@
+// @ts-ignore
 import scrollIntoView from 'scroll-into-view-if-needed';
 
 const main = () => {

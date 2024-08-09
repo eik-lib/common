@@ -13,7 +13,7 @@
     "eikjson.d.ts"
   ],
   "scripts": {
-    "clean": "rimraf node_modules",
+    "clean": "rimraf .tap node_modules types",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "schema:types": "json2ts lib/schemas/eikjson.schema.json > eikjson.d.ts",

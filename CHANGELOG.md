@@ -1,3 +1,10 @@
+## [4.0.7](https://github.com/eik-lib/common/compare/v4.0.6...v4.0.7) (2024-08-09)
+
+
+### Bug Fixes
+
+* type issue with helpers.getDefaults ([9b29d63](https://github.com/eik-lib/common/commit/9b29d63ca9834a2a33222d03eade925f33cef91a))
+
 ## [4.0.6](https://github.com/eik-lib/common/compare/v4.0.5...v4.0.6) (2024-08-07)
 
 

@@ -206,6 +206,13 @@ test('.extra() - valid values - should return value', (t) => {
     t.end();
 });
 
+test('.extra() - path traversal - should throw', (t) => {
+    t.throws(() => {
+        validators.extra('../test');
+    }, new Error('Parameter "extra" is not valid'));
+    t.end();
+});
+
 //
 // .semverType()
 //

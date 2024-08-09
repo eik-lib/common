@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { join, basename, dirname } from 'node:path';
 import tap from 'tap';
 import resolveFiles from '../../lib/helpers/resolve-files.js';
+import { ensurePosix } from '../../lib/helpers/path-slashes.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -51,7 +52,7 @@ tap.test(
         );
         t.equal(
             absolute,
-            join(basePath, relative),
+            ensurePosix(join(basePath, relative)),
             '.absolute should include .basePath and .relative',
         );
         t.match(
@@ -201,7 +202,7 @@ tap.test(
         );
         t.equal(
             absolute,
-            join(basePath, relative),
+            ensurePosix(join(basePath, relative)),
             '.absolute should include .basePath and .relative',
         );
         t.match(
@@ -220,8 +221,8 @@ tap.test(
 tap.test(
     'when source is an absolute file and cwd is a different directory entirely',
     async (t) => {
-        const cwd = await fs.mkdtempSync(
-            join(os.tmpdir(), basename(__filename)),
+        const cwd = fs.mkdtempSync(
+            join(os.tmpdir(), 'resolve-files-test-file'),
         );
         const resolved = await resolveFiles(
             { '/': join(fixturesPath, 'folder/client.js') },
@@ -243,8 +244,8 @@ tap.test(
 tap.test(
     'when source is an absolute folder with glob and cwd is a different directory entirely',
     async (t) => {
-        const cwd = await fs.mkdtempSync(
-            join(os.tmpdir(), basename(__filename)),
+        const cwd = fs.mkdtempSync(
+            join(os.tmpdir(), 'resolve-files-test-glob'),
         );
         const resolved = await resolveFiles(
             { '/': join(fixturesPath, 'folder/**/*') },

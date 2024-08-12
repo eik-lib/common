@@ -1,3 +1,11 @@
+## [4.0.8](https://github.com/eik-lib/common/compare/v4.0.7...v4.0.8) (2024-08-12)
+
+
+### Bug Fixes
+
+* allow specifying $schema ([bfc6b0f](https://github.com/eik-lib/common/commit/bfc6b0f5c878f14a7e3d78c4555779247e96a766))
+* use the correct upstream schema link for ajv ([90ca025](https://github.com/eik-lib/common/commit/90ca025d67a9b8f2cf900ead23f1cfb1cddb0c2a)), closes [/ajv.js.org/guide/schema-language.html#draft-07-and-draft-06](https://github.com//ajv.js.org/guide/schema-language.html/issues/draft-07-and-draft-06)
+
 ## [4.0.7](https://github.com/eik-lib/common/compare/v4.0.6...v4.0.7) (2024-08-09)
 
 

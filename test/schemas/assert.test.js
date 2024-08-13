@@ -94,7 +94,7 @@ test('assert type: invalid', (t) => {
     } catch (err) {
         t.equal(
             err.message,
-            'Parameter "type" is not valid: must be equal to one of the allowed values ("package", npm", map")',
+            'Parameter "type" is not valid: must be equal to one of the allowed values ("package", "npm", "map", "image")',
         );
     }
     t.end();

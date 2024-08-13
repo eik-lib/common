@@ -1,3 +1,10 @@
+## [4.0.9](https://github.com/eik-lib/common/compare/v4.0.8...v4.0.9) (2024-08-13)
+
+
+### Bug Fixes
+
+* add jsdoc for schema validators ([#325](https://github.com/eik-lib/common/issues/325)) ([062446a](https://github.com/eik-lib/common/commit/062446a1fa91cf0f1a63078b087a3670815b134c))
+
 ## [4.0.8](https://github.com/eik-lib/common/compare/v4.0.7...v4.0.8) (2024-08-12)
 
 

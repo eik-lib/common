@@ -1,149 +1,72 @@
-# Eik Common
+# @eik/common
 
-This package contains common utilities and schemas
+This package contains common utilities and schemas used in other Eik modules.
 
-## ESM ONLY
+## Schema
 
-From v4, this module is ESM only and cannot be used with Common JS.
+The [schema for `eik.json`](https://eik.dev/docs/reference/eik-json#json-schema)
+can be found here in this repo. Here is how you can use it in your `eik.json`.
 
-## APIs
-
-### schemas
-
-#### eik.json
-
-Importing schemas
-
-```js
-import { schemas, assert } from '@eik/common';
+```json
+{
+    "$schema": "https://raw.githubusercontent.com/eik-lib/common/main/lib/schemas/eikjson.schema.json",
+    "name": "my-app",
+    "version": "1.0.0",
+    "server": "https://eik.store.com",
+    "files": "./public",
+    "import-map": ["https://eik.store.com/map/store/v1"]
+}
 ```
 
-Validating an `eik.json` file
+`@eik/common` has a JavaScript API to [check against the schema](#schemas).
 
-```js
-const { error, value } = schemas.validate.eikJSON({
-    name: 'my-app',
-    version: '1.0.0',
-    server: 'http://eik-server',
-    files: [],
-});
-
-//or
-
-assert.eikJSON({
-    name: 'my-app',
-    version: '1.0.0',
-    server: 'http://eik-server',
-    files: [],
-});
-```
-
-Using individual schema validators
-
-##### name
-
-```js
-const { error, value } = schemas.validate.name('my-app');
-
-// or
-
-assert.name('my-app');
-```
-
-##### version
-
-```js
-const { error, value } = schemas.validate.version('1.0.0');
-
-// or
-
-assert.version('1.0.0');
-```
-
-##### type
-
-```js
-const { error, value } = schemas.validate.type('package');
-
-// or
-
-assert.type('package');
-```
-
-##### server
-
-```js
-const { error, value } = schemas.validate.server('http://myeikserver.com');
-
-// or
-
-assert.server('http://myeikserver.com');
-```
-
-##### files
-
-```js
-const { error, value } = schemas.validate.files({
-    './index.js': '/path/to/file.js',
-});
-
-// or
-
-assert.files({
-    './index.js': '/path/to/file.js',
-});
-```
-
-##### import map
-
-```js
-const { error, value } = schemas.validate.importMap(
-    'http://meserver.com/map.json',
-);
-
-const { error, value } = schemas.validate.importMap([
-    'http://meserver.com/map1.json',
-    'http://meserver.com/map2.json',
-]);
-
-// or
-
-assert.importMap([
-    'http://meserver.com/map1.json',
-    'http://meserver.com/map2.json',
-]);
-```
-
-##### out
-
-```js
-const { error, value } = schemas.validate.out('./.eik');
-
-// or
-
-assert.out('./.eik');
-```
+## API
 
 ### helpers
 
-#### localAssets
-
-A function to help development by mounting development routes to an Express.js or Fastify app based on values defined in `eik.json`
+`helpers` has utility functions used by several other Eik modules.
 
 ```js
-import express from 'express';
 import { helpers } from '@eik/common';
-const app = express();
-await helpers.localAssets(app);
+
+let config = helpers.getDefaults();
 ```
 
-For an `eik.json` file such as
+These are the available functions on `helpers`.
+
+| Name                  | Description                                                                                                                                                                                      |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `getDefaults`         | Reads configuration from `eik.json` or `package.json`. Includes defaults for missing optional settings.                                                                                          |
+| `localAssets`         | Sets up asset routes for local development. Mounted paths match those on Eik server and values are read from projects eik.json file.                                                             |
+| `typeSlug`            | Maps between Eik configuration values for the package type and its URL/file system value.                                                                                                        |
+| `typeTitle`           | Maps between a type config value and its title. Essentially uppercases the input.                                                                                                                |
+| `addTrailingSlash`    |                                                                                                                                                                                                  |
+| `removeTrailingSlash` |                                                                                                                                                                                                  |
+| `addLeadingSlash`     |                                                                                                                                                                                                  |
+| `removeLeadingSlash`  |                                                                                                                                                                                                  |
+| `resolveFiles`        | Uses an Eik JSON "files" definition to resolve files on disk into a data structure. Returns a list of [ResolvedFile](https://github.com/eik-lib/common/blob/main/lib/classes/resolved-files.js). |
+| `configStore`         | Collection of helper methods for reading and writing Eik configuration files.                                                                                                                    |
+
+#### localAssets
+
+Sets up asset routes for local development. Mounted paths match those on Eik server and values are read from projects eik.json file.
+
+Given this server and `eik.json`, the following routes would be added to your app.
+
+```js
+import { helpers } from '@eik/common';
+import express from 'express';
+
+let app = express();
+
+await helpers.localAssets(app);
+```
 
 ```json
 {
     "name": "my-app",
     "version": "1.0.0",
-    "server": "https://assets.myeikserver.com",
+    "server": "https://eik.store.com",
     "files": {
         "esm.js": "./assets/esm.js",
         "esm.css": "./assets/esm.css",
@@ -151,8 +74,6 @@ For an `eik.json` file such as
     }
 }
 ```
-
-A number of routes would be mounted into your app.
 
 ```
 /pkg/my-app/1.0.0/esm.js
@@ -161,30 +82,81 @@ A number of routes would be mounted into your app.
 /pkg/my-app/1.0.0/esm.css.map
 ```
 
-#### packageURL
+### schemas
 
-This helper function can be used to build URLs for given entries in an `eik.json` files section.
+`schemas` has functions to check values against the [`eik.json` schema](#schema).
+You can check a value against the schema for `eik.json` as a whole, or for individual
+values in the schema.
 
-Given the following `eik.json` file:
+```js
+import { schemas } from '@eik/common';
 
-```json
-{
-    "name": "my-app",
-    "version": "1.0.0",
-    "server": "https://assets.myeikserver.com",
-    "files": {
-        "esm.js": "./assets/esm.js",
-        "esm.css": "./assets/esm.css",
-        "/": "./assets/**/*.map"
-    }
+let { error, value } = schemas.validate.eikJSON(eikConfig);
+if (error) {
+    // fallback
 }
 ```
 
-and the following call to packageURL
+If you prefer, you can use the `assert` API which throws on error.
 
 ```js
-import { helpers } from '@eik/common';
-const url = await helpers.packageURL('esm.js');
+import { schemas } from '@eik/common';
+
+try {
+    schemas.assert.eikJSON(eikConfig);
+} catch {
+    // fallback
+}
 ```
 
-The URL returned will be `https://assets.myeikserver.com/pkg/my-app/1.0.0/esm.js`
+These are the available functions on `schemas.validate` and `schemas.assert`.
+
+| Name        | Description                                                             |
+| ----------- | ----------------------------------------------------------------------- |
+| `eikJSON`   | Checks that the given value includes required fields that are valid     |
+| `name`      | Checks [name](https://eik.dev/docs/reference/eik-json#name)             |
+| `version`   | Checks [version](https://eik.dev/docs/reference/eik-json#version)       |
+| `type`      | Checks [type](https://eik.dev/docs/reference/eik-json#type)             |
+| `server`    | Checks [server](https://eik.dev/docs/reference/eik-json#server)         |
+| `files`     | Checks [files](https://eik.dev/docs/reference/eik-json#files)           |
+| `importMap` | Checks [import-map](https://eik.dev/docs/reference/eik-json#import-map) |
+| `out`       | Checks [out](https://eik.dev/docs/reference/eik-json#out)               |
+
+### stream
+
+`stream` has functions to check that a value is a Stream.
+
+```js
+import { stream } from '@eik/common';
+
+if (stream.isStream(maybeStream)) {
+    // yup, it's a Stream
+}
+
+if (stream.isReadableStream(maybeReadableStream)) {
+    // yup, it's a ReadableStream
+}
+```
+
+### validators
+
+`validators` functions return the provided string normalized to lowercase, or throw an Error if the value does not pass the validation rules.
+Where possible, prefer using the [`schemas` API](#schemas).
+
+```js
+import { validators } from '@eik/common';
+
+let alias = validators.alias('1');
+```
+
+These are the available functions on `validators`.
+
+| Name         | Description                                                      |
+| ------------ | ---------------------------------------------------------------- |
+| `alias`      | Checks that a value is a valid alias value (ex 1)                |
+| `name`       | Checks that a value is a valid package name                      |
+| `org`        | Checks that a value is a valid organisation name.                |
+| `origin`     | Check that a value looks like an HTTP origin.                    |
+| `version`    | Checks that a value is a valid semver version                    |
+| `semverType` | Checks that a value is a valid semver type (major, minor, patch) |
+| `type`       | Checks that the value is a valid Eik type (pkg, npm, map)        |

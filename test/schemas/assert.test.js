@@ -45,6 +45,7 @@ test('assert eik JSON file - mutation does not occur', (t) => {
 
 test('assert asset manifest - all props invalid', (t) => {
     t.throws(() => {
+        // @ts-expect-error Testing bad input
         assert.eikJSON({
             name: '',
         });
@@ -151,6 +152,7 @@ test('assert files: valid', (t) => {
 
 test('assert files: invalid', (t) => {
     t.throws(() => {
+        // @ts-expect-error Testing bad input
         assert.files({ asd: 1 });
     });
     t.end();

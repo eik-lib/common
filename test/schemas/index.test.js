@@ -19,12 +19,12 @@ test('validate basic eik JSON file', (t) => {
 });
 
 test('validate asset manifest - all props invalid', (t) => {
+    // @ts-expect-error Testing bad input
     const result = validate.eikJSON({
         name: '',
     });
 
     t.same(result.value, { name: '', type: 'package' });
-    // @ts-ignore
     t.equal(result.error[0].message, `must have required property 'server'`);
     t.end();
 });
@@ -32,7 +32,7 @@ test('validate asset manifest - all props invalid', (t) => {
 test('validate name: empty string', (t) => {
     const result = validate.name('');
     t.equal(result.value, '');
-    t.equal(result.error.length, 1);
+    t.equal(result.error ? result.error.length : 0, 1);
     t.end();
 });
 
@@ -46,14 +46,14 @@ test('validate name: valid', (t) => {
 test('validate name: invalid by validate-npm-package-name module', (t) => {
     const result = validate.name('@finn-no/my-app~');
     t.equal(result.value, '@finn-no/my-app~');
-    t.equal(result.error.length, 1);
+    t.equal(result.error ? result.error.length : 0, 1);
     t.end();
 });
 
 test('validate version: empty string', (t) => {
     const result = validate.version('');
     t.equal(result.value, '');
-    t.equal(result.error.length, 1);
+    t.equal(result.error ? result.error.length : 0, 1);
     t.end();
 });
 
@@ -67,10 +67,8 @@ test('validate version: valid', (t) => {
 test('validate type: empty string', (t) => {
     const result = validate.type('');
     t.equal(result.value, '');
-    // @ts-ignore
-    t.equal(result.error.length, 1);
+    t.equal(result.error ? result.error.length : 0, 1);
     t.equal(
-        // @ts-ignore
         result.error[0].message,
         'must be equal to one of the allowed values',
     );
@@ -99,7 +97,7 @@ test('validate type: valid - map', (t) => {
 test('validate version: invalid by node-semver module', (t) => {
     const result = validate.version('1.0');
     t.equal(result.value, '1.0');
-    t.equal(result.error.length, 1);
+    t.equal(result.error ? result.error.length : 0, 1);
     t.end();
 });
 
@@ -113,8 +111,7 @@ test('validate server: valid', (t) => {
 test('validate server: invalid', (t) => {
     const result = validate.server('localhost');
     t.equal(result.value, 'localhost');
-    // @ts-ignore
-    t.equal(result.error.length, 1);
+    t.equal(result.error ? result.error.length : 0, 1);
     t.end();
 });
 
@@ -126,18 +123,17 @@ test('validate files: valid', (t) => {
 });
 
 test('validate files: invalid', (t) => {
+    // @ts-expect-error Testing bad input
     const result = validate.files({ asd: 1 });
     t.same(result.value, { asd: 1 });
-    // @ts-ignore
-    t.equal(result.error.length, 3);
+    t.equal(result.error ? result.error.length : 0, 3);
     t.end();
 });
 
 test('validate files: invalid', (t) => {
     const result = validate.files({});
     t.same(result.value, {});
-    // @ts-ignore
-    t.equal(result.error.length, 3);
+    t.equal(result.error ? result.error.length : 0, 3);
     t.end();
 });
 
@@ -164,16 +160,14 @@ test('validate importMap: valid array', (t) => {
 test('validate importMap: invalid string', (t) => {
     const result = validate.importMap('');
     t.same(result.value, '');
-    // @ts-ignore
-    t.equal(result.error.length, 3);
+    t.equal(result.error ? result.error.length : 0, 3);
     t.end();
 });
 
 test('validate importMap: invalid array', (t) => {
     const result = validate.importMap(['']);
     t.same(result.value, ['']);
-    // @ts-ignore
-    t.equal(result.error.length, 3);
+    t.equal(result.error ? result.error.length : 0, 3);
     t.end();
 });
 
@@ -187,7 +181,6 @@ test('validate out: valid', (t) => {
 test('validate out: invalid', (t) => {
     const result = validate.out('');
     t.same(result.value, '');
-    // @ts-ignore
-    t.equal(result.error.length, 1);
+    t.equal(result.error ? result.error.length : 0, 1);
     t.end();
 });

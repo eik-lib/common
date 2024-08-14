@@ -20,9 +20,9 @@ export interface EikjsonSchema {
    */
   version: string;
   /**
-   * The type of the Eik package. Must be one of 'package', 'npm' or 'map'. Setting this value changes the URL publish namespace between '/pkg' (default), '/npm' and '/map', use 'npm' when publishing NPM packages. Use 'map' when publishing import maps.
+   * The type of the Eik package. Must be one of 'package', 'npm', 'map' or 'image'. Setting this value changes the URL publish namespace between '/pkg' (default), '/npm', '/map' and '/img', use 'npm' when publishing NPM packages. Use 'image' when publishing images. Use 'map' when publishing import maps.
    */
-  type?: "package" | "npm" | "map";
+  type?: "package" | "npm" | "map" | "image";
   /**
    * File mapping definition for the package. Keys represent files or paths to be created on the Eik Server. Values represent paths to local files to be published.
    */

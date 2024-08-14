@@ -24,9 +24,9 @@
       "minLength": 1
     },
     "type": {
-      "description": "The type of the Eik package. Must be one of 'package', 'npm' or 'map'. Setting this value changes the URL publish namespace between '/pkg' (default), '/npm' and '/map', use 'npm' when publishing NPM packages. Use 'map' when publishing import maps.",
+      "description": "The type of the Eik package. Must be one of 'package', 'npm', 'map' or 'image'. Setting this value changes the URL publish namespace between '/pkg' (default), '/npm', '/map' and '/img', use 'npm' when publishing NPM packages. Use 'image' when publishing images. Use 'map' when publishing import maps.",
       "type": "string",
-      "enum": ["package", "npm", "map"],
+      "enum": ["package", "npm", "map", "image"],
       "default": "package"
     },
     "files": {

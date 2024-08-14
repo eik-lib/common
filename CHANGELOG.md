@@ -1,3 +1,10 @@
+# [4.1.0](https://github.com/eik-lib/common/compare/v4.0.9...v4.1.0) (2024-08-14)
+
+
+### Features
+
+* add support for Eik image type ([75a5830](https://github.com/eik-lib/common/commit/75a5830df7bf59f7ef627b8d143cda5c0bbbba1b))
+
 ## [4.0.9](https://github.com/eik-lib/common/compare/v4.0.8...v4.0.9) (2024-08-13)
 
 

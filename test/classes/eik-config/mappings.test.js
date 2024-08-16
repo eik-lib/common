@@ -5,6 +5,7 @@ import FileMapping from '../../../lib/classes/file-mapping.js';
 import LocalFileLocation from '../../../lib/classes/local-file-location.js';
 import RemoteFileLocation from '../../../lib/classes/remote-file-location.js';
 import EikConfig from '../../../lib/classes/eik-config.js';
+import { ensurePosix } from '../../../lib/helpers/path-slashes.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -280,7 +281,10 @@ test('mappings - files is an object - remaps name of file - absolute path to fil
         {
             ...validEikConfig,
             files: {
-                'script.js': join(baseDir, 'folder/client.js'),
+                'script.js': join(baseDir, 'folder/client.js').replace(
+                    /\\/g,
+                    '/',
+                ),
             },
         },
         null,
@@ -306,7 +310,7 @@ test('mappings - files is an object - mapped to folder - absolute path to folder
         {
             ...validEikConfig,
             files: {
-                folder: join(baseDir, 'folder'),
+                folder: ensurePosix(join(baseDir, 'folder')),
             },
         },
         null,
@@ -493,7 +497,7 @@ test('mappings - files is an object - mapped to folder - absolute path to folder
         {
             ...validEikConfig,
             files: {
-                folder: join(baseDir, 'folder'),
+                folder: ensurePosix(join(baseDir, 'folder')),
             },
         },
         null,

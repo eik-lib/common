@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 
 const main = () => {
-    const thing = 'this is a test fixture';
-    return thing;
+	const thing = "this is a test fixture";
+	return thing;
 };
 
 main();

@@ -1,14 +1,14 @@
 // @ts-ignore
-import scrollIntoView from 'scroll-into-view-if-needed';
+import scrollIntoView from "scroll-into-view-if-needed";
 
 const main = () => {
-    const node = document.getElementById('hero');
+	const node = document.getElementById("hero");
 
-    scrollIntoView(node, {
-        scrollMode: 'if-needed',
-        block: 'nearest',
-        inline: 'nearest',
-    });
+	scrollIntoView(node, {
+		scrollMode: "if-needed",
+		block: "nearest",
+		inline: "nearest",
+	});
 };
 
 main();

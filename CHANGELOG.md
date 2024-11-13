@@ -1,3 +1,15 @@
+# [5.0.0](https://github.com/eik-lib/common/compare/v4.1.1...v5.0.0) (2024-11-13)
+
+
+### Bug Fixes
+
+* update validate-npm-package-name ([0dac235](https://github.com/eik-lib/common/commit/0dac23582de09bb739a730a8ca9bee7370146bcc))
+
+
+### BREAKING CHANGES
+
+* Requires Node >=20.5.0
+
 ## [4.1.1](https://github.com/eik-lib/common/compare/v4.1.0...v4.1.1) (2024-08-16)
 
 

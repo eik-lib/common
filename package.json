@@ -57,7 +57,7 @@
     "@types/semver": "7.5.8",
     "@types/validate-npm-package-name": "4.0.2",
     "eslint": "9.16.0",
-    "express": "4.21.1",
+    "express": "4.21.2",
     "fastify": "5.1.0",
     "json-schema-to-typescript": "15.0.3",
     "npm-run-all2": "7.0.1",

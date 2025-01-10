@@ -1,3 +1,10 @@
+## [5.0.1](https://github.com/eik-lib/common/compare/v5.0.0...v5.0.1) (2025-01-10)
+
+
+### Bug Fixes
+
+* **deps:** update dependency glob to v11.0.1 ([#345](https://github.com/eik-lib/common/issues/345)) ([418aef9](https://github.com/eik-lib/common/commit/418aef9845b60507ae6cd4c2597eac092dad9d3d))
+
 # [5.0.0](https://github.com/eik-lib/common/compare/v4.1.1...v5.0.0) (2024-11-13)
 
 

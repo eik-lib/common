@@ -1,3 +1,10 @@
+## [5.0.2](https://github.com/eik-lib/common/compare/v5.0.1...v5.0.2) (2025-01-30)
+
+
+### Bug Fixes
+
+* **deps:** update dependency semver to v7.7.0 ([#346](https://github.com/eik-lib/common/issues/346)) ([a3ae83e](https://github.com/eik-lib/common/commit/a3ae83e0e74b91527896489e97bba5d2224d3e6b))
+
 ## [5.0.1](https://github.com/eik-lib/common/compare/v5.0.0...v5.0.1) (2025-01-10)
 
 

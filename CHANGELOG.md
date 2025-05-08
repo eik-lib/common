@@ -1,3 +1,10 @@
+# [5.1.0](https://github.com/eik-lib/common/compare/v5.0.4...v5.1.0) (2025-05-08)
+
+
+### Features
+
+* new helper function fetchImportMaps ([#358](https://github.com/eik-lib/common/issues/358)) ([0f89645](https://github.com/eik-lib/common/commit/0f89645937a5c786ea54cd4ff873c37de3efee01))
+
 ## [5.0.4](https://github.com/eik-lib/common/compare/v5.0.3...v5.0.4) (2025-04-23)
 
 

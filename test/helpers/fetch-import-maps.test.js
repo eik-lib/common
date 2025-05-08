@@ -89,16 +89,6 @@ tap.test("returns an error if an import map could not be found", async (t) => {
 	}
 });
 
-tap.test("returns an error if an import map could not be found", async (t) => {
-	try {
-		await fetchImportMaps([`${address}/map/does-not-exist/v1`]);
-		t.fail("Expected to throw");
-	} catch (e) {
-		t.match(e.message, "could not be found");
-		t.pass();
-	}
-});
-
 tap.test("returns an error if server says no", async (t) => {
 	try {
 		await fetchImportMaps([`${address}/map/rejected-response/v1`]);

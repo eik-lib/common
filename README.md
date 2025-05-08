@@ -9,12 +9,12 @@ can be found here in this repo. Here is how you can use it in your `eik.json`.
 
 ```json
 {
-    "$schema": "https://raw.githubusercontent.com/eik-lib/common/main/lib/schemas/eikjson.schema.json",
-    "name": "my-app",
-    "version": "1.0.0",
-    "server": "https://eik.store.com",
-    "files": "./public",
-    "import-map": ["https://eik.store.com/map/store/v1"]
+	"$schema": "https://raw.githubusercontent.com/eik-lib/common/main/lib/schemas/eikjson.schema.json",
+	"name": "my-app",
+	"version": "1.0.0",
+	"server": "https://eik.store.com",
+	"files": "./public",
+	"import-map": ["https://eik.store.com/map/store/v1"]
 }
 ```
 
@@ -27,7 +27,7 @@ can be found here in this repo. Here is how you can use it in your `eik.json`.
 `helpers` has utility functions used by several other Eik modules.
 
 ```js
-import { helpers } from '@eik/common';
+import { helpers } from "@eik/common";
 
 let config = helpers.getDefaults();
 ```
@@ -46,6 +46,7 @@ These are the available functions on `helpers`.
 | `removeLeadingSlash`  |                                                                                                                                                                                                  |
 | `resolveFiles`        | Uses an Eik JSON "files" definition to resolve files on disk into a data structure. Returns a list of [ResolvedFile](https://github.com/eik-lib/common/blob/main/lib/classes/resolved-files.js). |
 | `configStore`         | Collection of helper methods for reading and writing Eik configuration files.                                                                                                                    |
+| `fetchImportMaps`     | Helper to get import maps (array of URLs) with some common error handling.                                                                                                                       |
 
 #### localAssets
 
@@ -54,8 +55,8 @@ Sets up asset routes for local development. Mounted paths match those on Eik ser
 Given this server and `eik.json`, the following routes would be added to your app.
 
 ```js
-import { helpers } from '@eik/common';
-import express from 'express';
+import { helpers } from "@eik/common";
+import express from "express";
 
 let app = express();
 
@@ -64,14 +65,14 @@ await helpers.localAssets(app);
 
 ```json
 {
-    "name": "my-app",
-    "version": "1.0.0",
-    "server": "https://eik.store.com",
-    "files": {
-        "esm.js": "./assets/esm.js",
-        "esm.css": "./assets/esm.css",
-        "/": "./assets/**/*.map"
-    }
+	"name": "my-app",
+	"version": "1.0.0",
+	"server": "https://eik.store.com",
+	"files": {
+		"esm.js": "./assets/esm.js",
+		"esm.css": "./assets/esm.css",
+		"/": "./assets/**/*.map"
+	}
 }
 ```
 
@@ -89,23 +90,23 @@ You can check a value against the schema for `eik.json` as a whole, or for indiv
 values in the schema.
 
 ```js
-import { schemas } from '@eik/common';
+import { schemas } from "@eik/common";
 
 let { error, value } = schemas.validate.eikJSON(eikConfig);
 if (error) {
-    // fallback
+	// fallback
 }
 ```
 
 If you prefer, you can use the `assert` API which throws on error.
 
 ```js
-import { schemas } from '@eik/common';
+import { schemas } from "@eik/common";
 
 try {
-    schemas.assert.eikJSON(eikConfig);
+	schemas.assert.eikJSON(eikConfig);
 } catch {
-    // fallback
+	// fallback
 }
 ```
 
@@ -127,14 +128,14 @@ These are the available functions on `schemas.validate` and `schemas.assert`.
 `stream` has functions to check that a value is a Stream.
 
 ```js
-import { stream } from '@eik/common';
+import { stream } from "@eik/common";
 
 if (stream.isStream(maybeStream)) {
-    // yup, it's a Stream
+	// yup, it's a Stream
 }
 
 if (stream.isReadableStream(maybeReadableStream)) {
-    // yup, it's a ReadableStream
+	// yup, it's a ReadableStream
 }
 ```
 
@@ -144,9 +145,9 @@ if (stream.isReadableStream(maybeReadableStream)) {
 Where possible, prefer using the [`schemas` API](#schemas).
 
 ```js
-import { validators } from '@eik/common';
+import { validators } from "@eik/common";
 
-let alias = validators.alias('1');
+let alias = validators.alias("1");
 ```
 
 These are the available functions on `validators`.

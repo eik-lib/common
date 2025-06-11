@@ -1,3 +1,10 @@
+## [5.1.3](https://github.com/eik-lib/common/compare/v5.1.2...v5.1.3) (2025-06-11)
+
+
+### Bug Fixes
+
+* internal refactoring to reduce file size when bundled ([#363](https://github.com/eik-lib/common/issues/363)) ([5e06159](https://github.com/eik-lib/common/commit/5e061594f92ccb9c2c137faa35410aa192782207))
+
 ## [5.1.2](https://github.com/eik-lib/common/compare/v5.1.1...v5.1.2) (2025-06-07)
 
 

@@ -1,3 +1,10 @@
+## [5.1.4](https://github.com/eik-lib/common/compare/v5.1.3...v5.1.4) (2025-06-11)
+
+
+### Bug Fixes
+
+* refactor to use native JSON module for import ([#365](https://github.com/eik-lib/common/issues/365)) ([53fc469](https://github.com/eik-lib/common/commit/53fc46995d25a992345c5152e9ee4260acb3424a))
+
 ## [5.1.3](https://github.com/eik-lib/common/compare/v5.1.2...v5.1.3) (2025-06-11)
 
 

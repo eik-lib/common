@@ -1,6 +1,6 @@
 {
   "name": "@eik/common",
-  "version": "5.1.4",
+  "version": "5.1.5",
   "description": "Common utilities for Eik modules",
   "main": "lib/index.js",
   "types": "types/index.d.ts",

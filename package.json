@@ -45,7 +45,7 @@
   },
   "devDependencies": {
     "@babel/plugin-syntax-import-assertions": "7.27.1",
-    "@eik/eslint-config": "1.0.18",
+    "@eik/eslint-config": "1.0.20",
     "@eik/prettier-config": "1.0.1",
     "@eik/semantic-release-config": "1.0.5",
     "@eik/typescript-config": "1.0.0",

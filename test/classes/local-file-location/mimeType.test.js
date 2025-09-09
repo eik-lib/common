@@ -16,7 +16,7 @@ test("LocalFileLocation: .mimeType for ./my/file.js", (t) => {
 	const subject = new LocalFileLocation("./my/file.js", __dirname);
 	t.equal(
 		subject.mimeType,
-		"application/javascript",
+		"text/javascript",
 		"should be treated as JavaScript",
 	);
 	t.end();

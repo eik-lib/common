@@ -20,7 +20,7 @@ test("LocalFileLocation: .contentType for ./my/file.js", (t) => {
 	const subject = new LocalFileLocation("./my/file.js", __dirname);
 	t.equal(
 		subject.contentType,
-		"application/javascript; charset=utf-8",
+		"text/javascript; charset=utf-8",
 		"should be treated as JavaScript",
 	);
 	t.end();

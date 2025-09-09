@@ -1,3 +1,10 @@
+## [5.1.7](https://github.com/eik-lib/common/compare/v5.1.6...v5.1.7) (2025-09-09)
+
+
+### Bug Fixes
+
+* **deps:** update dependency mime-types to v3 ([#350](https://github.com/eik-lib/common/issues/350)) ([1016433](https://github.com/eik-lib/common/commit/10164334b162351e6ec6cfde00c9877dcbb03358))
+
 ## [5.1.6](https://github.com/eik-lib/common/compare/v5.1.5...v5.1.6) (2025-07-22)
 
 

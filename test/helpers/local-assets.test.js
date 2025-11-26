@@ -2,7 +2,6 @@ import { fileURLToPath } from "node:url";
 import { dirname } from "node:path";
 import express from "express";
 import fastify from "fastify";
-import Hapi from "@hapi/hapi";
 import { test } from "tap";
 import stoppable from "stoppable";
 import localAssets from "../../lib/helpers/local-assets.js";
@@ -92,32 +91,6 @@ test("Setup development routes for fastify", async (t) => {
 	t.equal(res3.status, 200);
 	t.equal(res4.status, 200);
 	await server.close();
-	t.end();
-});
-
-test("Setup development routes for hapi", async (t) => {
-	// @ts-ignore
-	const server = Hapi.Server({
-		host: "localhost",
-	});
-	await localAssets(server, __dirname);
-	await server.start();
-	const address = server.info.uri;
-
-	const res1 = await fetch(new URL("/pkg/my-app/1.0.0/esm.js", address));
-	const res2 = await fetch(new URL("/pkg/my-app/1.0.0/esm.css", address));
-	const res3 = await fetch(
-		new URL("/pkg/my-app/1.0.0/assets/esm.css.map", address),
-	);
-	const res4 = await fetch(
-		new URL("/pkg/my-app/1.0.0/assets/esm.js.map", address),
-	);
-
-	t.equal(res1.status, 200);
-	t.equal(res2.status, 200);
-	t.equal(res3.status, 200);
-	t.equal(res4.status, 200);
-	await server.stop();
 	t.end();
 });
 

@@ -1,3 +1,10 @@
+## [5.1.8](https://github.com/eik-lib/common/compare/v5.1.7...v5.1.8) (2025-11-26)
+
+
+### Bug Fixes
+
+* update dependencies ([#387](https://github.com/eik-lib/common/issues/387)) ([a58ffcd](https://github.com/eik-lib/common/commit/a58ffcd8967a2787dcdd3e947b108ad98f6e059a))
+
 ## [5.1.7](https://github.com/eik-lib/common/compare/v5.1.6...v5.1.7) (2025-09-09)
 
 

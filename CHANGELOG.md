@@ -1,3 +1,10 @@
+## [5.1.10](https://github.com/eik-lib/common/compare/v5.1.9...v5.1.10) (2025-12-02)
+
+
+### Bug Fixes
+
+* **deps:** update dependency validate-npm-package-name to v7 ([#377](https://github.com/eik-lib/common/issues/377)) ([be986c8](https://github.com/eik-lib/common/commit/be986c824de806662f8e274ecc0c1aeb5e6fe70c))
+
 ## [5.1.9](https://github.com/eik-lib/common/compare/v5.1.8...v5.1.9) (2025-12-02)
 
 

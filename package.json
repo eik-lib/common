@@ -41,7 +41,7 @@
     "is-glob": "4.0.3",
     "mime-types": "3.0.2",
     "semver": "7.7.3",
-    "validate-npm-package-name": "7.0.1"
+    "validate-npm-package-name": "7.0.2"
   },
   "devDependencies": {
     "@babel/plugin-syntax-import-assertions": "7.27.1",

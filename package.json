@@ -44,7 +44,7 @@
     "validate-npm-package-name": "7.0.2"
   },
   "devDependencies": {
-    "@babel/plugin-syntax-import-assertions": "7.27.1",
+    "@babel/plugin-syntax-import-assertions": "7.28.6",
     "@eik/eslint-config": "1.0.23",
     "@eik/prettier-config": "1.0.1",
     "@eik/semantic-release-config": "1.0.10",

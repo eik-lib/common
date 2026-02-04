@@ -51,7 +51,7 @@
     "@eik/typescript-config": "1.0.0",
     "@semantic-release/changelog": "6.0.3",
     "@semantic-release/git": "10.0.1",
-    "@types/glob": "8.1.0",
+    "@types/glob": "9.0.0",
     "@types/is-glob": "4.0.4",
     "@types/semver": "7.7.1",
     "@types/validate-npm-package-name": "4.0.2",

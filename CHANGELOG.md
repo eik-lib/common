@@ -1,3 +1,10 @@
+## [5.1.15](https://github.com/eik-lib/common/compare/v5.1.14...v5.1.15) (2026-02-04)
+
+
+### Bug Fixes
+
+* Bump all dependencies ([#415](https://github.com/eik-lib/common/issues/415)) ([2f1f4ba](https://github.com/eik-lib/common/commit/2f1f4bae636e6170e6bee5a845c451f8b67fa66f))
+
 ## [5.1.14](https://github.com/eik-lib/common/compare/v5.1.13...v5.1.14) (2026-02-04)
 
 

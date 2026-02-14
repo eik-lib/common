@@ -1,3 +1,10 @@
+## [5.1.19](https://github.com/eik-lib/common/compare/v5.1.18...v5.1.19) (2026-02-14)
+
+
+### Bug Fixes
+
+* **deps:** update dependency ajv to v8.18.0 ([#420](https://github.com/eik-lib/common/issues/420)) ([c394774](https://github.com/eik-lib/common/commit/c394774af4125ae529d069c1904dbca332da4eca))
+
 ## [5.1.18](https://github.com/eik-lib/common/compare/v5.1.17...v5.1.18) (2026-02-12)
 
 

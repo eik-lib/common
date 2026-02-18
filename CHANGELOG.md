@@ -1,3 +1,10 @@
+## [5.1.21](https://github.com/eik-lib/common/compare/v5.1.20...v5.1.21) (2026-02-18)
+
+
+### Bug Fixes
+
+* **deps:** update dependency glob to v13.0.5 ([#422](https://github.com/eik-lib/common/issues/422)) ([fb88a0d](https://github.com/eik-lib/common/commit/fb88a0d3e7b517109fa29426efa37db164c11469))
+
 ## [5.1.20](https://github.com/eik-lib/common/compare/v5.1.19...v5.1.20) (2026-02-17)
 
 

@@ -54,7 +54,7 @@
     "@types/is-glob": "4.0.4",
     "@types/semver": "7.7.1",
     "@types/validate-npm-package-name": "4.0.2",
-    "eslint": "9.39.2",
+    "eslint": "9.39.3",
     "express": "5.2.1",
     "fastify": "5.7.4",
     "json-schema-to-typescript": "15.0.4",

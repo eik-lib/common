@@ -1,3 +1,13 @@
+## [5.1.23](https://github.com/eik-lib/common/compare/v5.1.22...v5.1.23) (2026-03-27)
+
+
+### Bug Fixes
+
+* performance-related refactor (reduced regex compilation) ([761f602](https://github.com/eik-lib/common/commit/761f6023de751fae7da15cee285eeb571b8fb684))
+* regression after --fix ([9a8bc89](https://github.com/eik-lib/common/commit/9a8bc894c2b1a5bacd91258782ceb373ee46c9b2))
+* remove is-glob ([c98a99b](https://github.com/eik-lib/common/commit/c98a99ba6d5374bd1433d29152f842f207a38d02))
+* replace glob with tinyglobby ([9c6fe05](https://github.com/eik-lib/common/commit/9c6fe051e948b285f79d45abcf1f829c7950055f))
+
 ## [5.1.22](https://github.com/eik-lib/common/compare/v5.1.21...v5.1.22) (2026-02-19)
 
 

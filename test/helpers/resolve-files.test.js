@@ -40,7 +40,7 @@ tap.test(
 				`${file.relative} wrapped in LocalFileLocation object`,
 			);
 		}
-		const asArray = Array.from(resolved[0]);
+		const asArray = [...resolved[0]];
 		const { relative, absolute, basePath } = asArray[1];
 		t.equal(relative, "client.js", ".relative should not include .basePath");
 		t.equal(
@@ -94,7 +94,7 @@ tap.test(
 			"basePath should exclude glob",
 		);
 		t.equal(resolved[0].pattern, "**/*.js", "pattern should exclude basePath");
-		t.equal(Array.from(resolved[0])[2].relative, "folder/client.js");
+		t.equal([...resolved[0]][2].relative, "folder/client.js");
 	},
 );
 
@@ -170,7 +170,7 @@ tap.test(
 				`${file.relative} wrapped in LocalFileLocation object`,
 			);
 		}
-		const asArray = Array.from(resolved[0]);
+		const asArray = [...resolved[0]];
 		const { relative, absolute, basePath } = asArray[1];
 		t.equal(relative, "client.js", ".relative should not include .basePath");
 		t.equal(

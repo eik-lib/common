@@ -8,7 +8,7 @@ test("ResolvedFiles: iterator for ./my/file.js", (t) => {
 		definition: ["dest", "src"],
 	});
 
-	const files = Array.from(subject);
+	const files = [...subject];
 	t.equal(
 		files[0].relative,
 		"./my/file.js",

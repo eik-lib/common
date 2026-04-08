@@ -1,3 +1,10 @@
+## [5.1.24](https://github.com/eik-lib/common/compare/v5.1.23...v5.1.24) (2026-04-08)
+
+
+### Bug Fixes
+
+* **deps:** update dependency tinyglobby to v0.2.16 ([#442](https://github.com/eik-lib/common/issues/442)) ([e222215](https://github.com/eik-lib/common/commit/e22221547afe15938fab13fc15cdbc23d2b3192e))
+
 ## [5.1.23](https://github.com/eik-lib/common/compare/v5.1.22...v5.1.23) (2026-03-27)
 
 

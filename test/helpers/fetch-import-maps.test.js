@@ -94,7 +94,10 @@ tap.test("returns an error if server says no", async (t) => {
 		await fetchImportMaps([`${address}/map/rejected-response/v1`]);
 		t.fail("Expected to throw");
 	} catch (e) {
-		t.match(e instanceof Error ? e.message : String(e), "rejected client request");
+		t.match(
+			e instanceof Error ? e.message : String(e),
+			"rejected client request",
+		);
 		t.pass();
 	}
 });
@@ -116,7 +119,10 @@ tap.test(
 			await fetchImportMaps([`${address}/map/empty-response/v1`]);
 			t.fail("Expected to throw");
 		} catch (e) {
-			t.match(e instanceof Error ? e.message : String(e), "got an empty response");
+			t.match(
+				e instanceof Error ? e.message : String(e),
+				"got an empty response",
+			);
 			t.pass();
 		}
 	},
@@ -129,7 +135,10 @@ tap.test(
 			await fetchImportMaps([`${address}/map/text-response/v1`]);
 			t.fail("Expected to throw");
 		} catch (e) {
-			t.match(e instanceof Error ? e.message : String(e), "did not return JSON, got");
+			t.match(
+				e instanceof Error ? e.message : String(e),
+				"did not return JSON, got",
+			);
 			t.pass();
 		}
 	},

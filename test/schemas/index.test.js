@@ -25,7 +25,10 @@ test("validate asset manifest - all props invalid", (t) => {
 	});
 
 	t.same(result.value, { name: "", type: "package" });
-	t.equal(Array.isArray(result.error) ? result.error[0].message : undefined, `must have required property 'server'`);
+	t.equal(
+		Array.isArray(result.error) ? result.error[0].message : undefined,
+		`must have required property 'server'`,
+	);
 	t.end();
 });
 

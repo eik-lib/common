@@ -15,7 +15,7 @@ test("EikConfig: .validate(): no config given", (t) => {
 		config.validate();
 	} catch (err) {
 		t.match(
-			err.message,
+			err instanceof Error ? err.message : String(err),
 			"Invalid eik.json schema",
 			"should throw for invalid config",
 		);

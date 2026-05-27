@@ -25,7 +25,7 @@ test("EikConfig: .cwd set to invalid relative path some/path", (t) => {
 		new EikConfig(validEikConfig, [], "some/path");
 	} catch (err) {
 		t.match(
-			err.message,
+			err instanceof Error ? err.message : String(err),
 			'"configRootDir" must be an absolute path:',
 			"should throw expected error with message",
 		);

@@ -25,7 +25,7 @@ test("validate asset manifest - all props invalid", (t) => {
 	});
 
 	t.same(result.value, { name: "", type: "package" });
-	t.equal(result.error[0].message, `must have required property 'server'`);
+	t.equal(Array.isArray(result.error) ? result.error[0].message : undefined, `must have required property 'server'`);
 	t.end();
 });
 
@@ -69,7 +69,7 @@ test("validate type: empty string", (t) => {
 	t.equal(result.value, "");
 	t.equal(result.error ? result.error.length : 0, 1);
 	t.equal(
-		result.error[0].message,
+		Array.isArray(result.error) ? result.error[0].message : undefined,
 		"must be equal to one of the allowed values",
 	);
 	t.end();

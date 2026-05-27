@@ -94,7 +94,7 @@ test("assert type: invalid", (t) => {
 		assert.type("foo");
 	} catch (err) {
 		t.equal(
-			err.message,
+			err instanceof Error ? err.message : String(err),
 			'Parameter "type" is not valid: must be equal to one of the allowed values ("package", "npm", "map", "image")',
 		);
 	}

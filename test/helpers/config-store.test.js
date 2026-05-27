@@ -13,7 +13,7 @@ function mkdirTempDir() {
 	return fs.mkdtemp(join(os.tmpdir(), "eik-config"));
 }
 
-const mockEikJSON = (data) => ({
+const mockEikJSON = (/** @type {Record<string, unknown>} */ data = {}) => ({
 	name: "magarita",
 	server: "http://server",
 	files: { "/": "pizza" },
@@ -98,7 +98,7 @@ test("package.json and eik.json not being present", (t) => {
 		configStore.findInDirectory(`${sep}pizza dir`, () => null);
 	} catch (e) {
 		t.equal(
-			e.message,
+			e instanceof Error ? e.message : String(e),
 			`No package.json or eik.json file found in: '${sep}pizza dir'`,
 		);
 	}
@@ -107,7 +107,7 @@ test("package.json and eik.json not being present", (t) => {
 
 test("package.json and eik.json both have eik config", (t) => {
 	t.plan(1);
-	const jsonReaderStub = (path) => {
+	const jsonReaderStub = (/** @type {string} */ path) => {
 		if (path.includes("package.json")) return { eik: { pizza: "magarita" } };
 		return {};
 	};
@@ -115,7 +115,7 @@ test("package.json and eik.json both have eik config", (t) => {
 		configStore.findInDirectory(`${sep}pizza dir`, jsonReaderStub);
 	} catch (e) {
 		t.equal(
-			e.message,
+			e instanceof Error ? e.message : String(e),
 			"Eik configuration was defined in both in package.json and eik.json. You must specify one or the other.",
 		);
 	}
@@ -124,7 +124,7 @@ test("package.json and eik.json both have eik config", (t) => {
 });
 
 test("name is pulled from package.json if not defined in eik.json", (t) => {
-	const jsonReaderStub = (path) => {
+	const jsonReaderStub = (/** @type {string} */ path) => {
 		if (path.includes("package.json"))
 			return {
 				name: "big pizza co",
@@ -163,7 +163,7 @@ test("tokens are present", (t) => {
 
 test("invalid json error", (t) => {
 	t.plan(1);
-	const jsonReaderStub = (path) => {
+	const jsonReaderStub = (/** @type {string} */ path) => {
 		if (path.includes(".json")) JSON.parse("not json");
 		return {};
 	};
@@ -171,7 +171,7 @@ test("invalid json error", (t) => {
 	try {
 		configStore.findInDirectory(`${sep}pizza dir`, jsonReaderStub);
 	} catch (e) {
-		t.match(e.message, /Unexpected token/);
+		t.match(e instanceof Error ? e.message : String(e), /Unexpected token/);
 	}
 	t.end();
 });
@@ -182,7 +182,7 @@ test("no configuration present", (t) => {
 		configStore.findInDirectory(`${sep}pizza dir`, () => {});
 	} catch (e) {
 		t.equal(
-			e.message,
+			e instanceof Error ? e.message : String(e),
 			`No package.json or eik.json file found in: '${sep}pizza dir'`,
 		);
 	}

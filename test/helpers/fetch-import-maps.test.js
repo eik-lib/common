@@ -1,5 +1,6 @@
 import fastify from "fastify";
-import tap from "tap";
+import { test, before, after } from "node:test";
+import assert from "node:assert/strict";
 import { fetchImportMaps } from "../../lib/helpers/fetch-import-maps.js";
 
 const app = fastify({
@@ -48,21 +49,21 @@ app.get("/map/text-response/v1", (request, reply) => {
 /** @type {string} */
 let address;
 
-tap.before(async () => {
+before(async () => {
 	address = await app.listen({
 		host: "0.0.0.0",
 		port: 50255,
 	});
 });
 
-tap.teardown(() => app.close());
+after(() => app.close());
 
-tap.test("returns the expected maps", async (t) => {
+test("returns the expected maps", async () => {
 	const result = await fetchImportMaps([
 		`${address}/map/lit/v3`,
 		`${address}/map/react/v19`,
 	]);
-	t.match(result, [
+	assert.deepStrictEqual(result, [
 		{
 			imports: {
 				lit: "https://assets.example.com/npm/lit/v3/lit.min.js",
@@ -76,70 +77,39 @@ tap.test("returns the expected maps", async (t) => {
 			},
 		},
 	]);
-	t.end();
 });
 
-tap.test("returns an error if an import map could not be found", async (t) => {
-	try {
-		await fetchImportMaps([`${address}/map/does-not-exist/v1`]);
-		t.fail("Expected to throw");
-	} catch (e) {
-		t.match(e instanceof Error ? e.message : String(e), "could not be found");
-		t.pass();
-	}
+test("returns an error if an import map could not be found", async () => {
+	await assert.rejects(
+		fetchImportMaps([`${address}/map/does-not-exist/v1`]),
+		/could not be found/,
+	);
 });
 
-tap.test("returns an error if server says no", async (t) => {
-	try {
-		await fetchImportMaps([`${address}/map/rejected-response/v1`]);
-		t.fail("Expected to throw");
-	} catch (e) {
-		t.match(
-			e instanceof Error ? e.message : String(e),
-			"rejected client request",
-		);
-		t.pass();
-	}
+test("returns an error if server says no", async () => {
+	await assert.rejects(
+		fetchImportMaps([`${address}/map/rejected-response/v1`]),
+		/rejected client request/,
+	);
 });
 
-tap.test("returns an error if server is down", async (t) => {
-	try {
-		await fetchImportMaps([`${address}/map/server-error/v1`]);
-		t.fail("Expected to throw");
-	} catch (e) {
-		t.match(e instanceof Error ? e.message : String(e), "Server error");
-		t.pass();
-	}
+test("returns an error if server is down", async () => {
+	await assert.rejects(
+		fetchImportMaps([`${address}/map/server-error/v1`]),
+		/Server error/,
+	);
 });
 
-tap.test(
-	"returns an error if an import map fetch returns an empty result",
-	async (t) => {
-		try {
-			await fetchImportMaps([`${address}/map/empty-response/v1`]);
-			t.fail("Expected to throw");
-		} catch (e) {
-			t.match(
-				e instanceof Error ? e.message : String(e),
-				"got an empty response",
-			);
-			t.pass();
-		}
-	},
-);
+test("returns an error if an import map fetch returns an empty result", async () => {
+	await assert.rejects(
+		fetchImportMaps([`${address}/map/empty-response/v1`]),
+		/got an empty response/,
+	);
+});
 
-tap.test(
-	"returns an error if an import map fetch returns non-JSON content",
-	async (t) => {
-		try {
-			await fetchImportMaps([`${address}/map/text-response/v1`]);
-			t.fail("Expected to throw");
-		} catch (e) {
-			t.match(
-				e instanceof Error ? e.message : String(e),
-				"did not return JSON, got",
-			);
-			t.pass();
-		}
-	},
-);
+test("returns an error if an import map fetch returns non-JSON content", async () => {
+	await assert.rejects(
+		fetchImportMaps([`${address}/map/text-response/v1`]),
+		/did not return JSON, got/,
+	);
+});

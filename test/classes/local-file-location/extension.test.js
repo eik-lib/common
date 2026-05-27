@@ -1,25 +1,27 @@
 import { fileURLToPath } from "node:url";
 import { dirname } from "node:path";
-import { test } from "tap";
+import { test } from "node:test";
+import assert from "node:assert/strict";
 import LocalFileLocation from "../../../lib/classes/local-file-location.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-test("LocalFileLocation: .extension for ./my/file.json", (t) => {
+test("LocalFileLocation: .extension for ./my/file.json", () => {
 	const subject = new LocalFileLocation("./my/file.json", __dirname);
-	t.equal(subject.extension, ".json", "should be treated as JSON");
-	t.end();
+	assert.strictEqual(subject.extension, ".json", "should be treated as JSON");
 });
 
-test("LocalFileLocation: .extension for ./my/file.js", (t) => {
+test("LocalFileLocation: .extension for ./my/file.js", () => {
 	const subject = new LocalFileLocation("./my/file.js", __dirname);
-	t.equal(subject.extension, ".js", "should be treated as JavaScript");
-	t.end();
+	assert.strictEqual(
+		subject.extension,
+		".js",
+		"should be treated as JavaScript",
+	);
 });
 
-test("LocalFileLocation: .extension for file.css", (t) => {
+test("LocalFileLocation: .extension for file.css", () => {
 	const subject = new LocalFileLocation("./my/file.css", __dirname);
-	t.equal(subject.extension, ".css", "should be treated as CSS");
-	t.end();
+	assert.strictEqual(subject.extension, ".css", "should be treated as CSS");
 });

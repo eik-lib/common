@@ -1,4 +1,5 @@
-import { test } from "tap";
+import { test } from "node:test";
+import assert from "node:assert/strict";
 import EikConfig from "../../../lib/classes/eik-config.js";
 
 const validEikConfig = {
@@ -9,15 +10,13 @@ const validEikConfig = {
 	type: "npm",
 };
 
-test("EikConfig: .type: no value given", (t) => {
+test("EikConfig: .type: no value given", () => {
 	const config = new EikConfig(null);
-	t.equal(config.type, "package", 'should default to "package"');
-	t.end();
+	assert.strictEqual(config.type, "package", 'should default to "package"');
 });
 
-test("EikConfig: .type: value given", (t) => {
+test("EikConfig: .type: value given", () => {
 	// @ts-ignore
 	const config = new EikConfig(validEikConfig);
-	t.equal(config.type, "npm", "should overwrite default value");
-	t.end();
+	assert.strictEqual(config.type, "npm", "should overwrite default value");
 });

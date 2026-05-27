@@ -1,4 +1,5 @@
-import { test } from "tap";
+import { test } from "node:test";
+import assert from "node:assert/strict";
 import EikConfig from "../../../lib/classes/eik-config.js";
 
 const validEikConfig = {
@@ -8,40 +9,40 @@ const validEikConfig = {
 	version: "0.0.0",
 };
 
-test("EikConfig: .token: no token configured", (t) => {
+test("EikConfig: .token: no token configured", () => {
 	const config = new EikConfig(validEikConfig, null);
-	t.same(config.token, null);
-	t.end();
+	assert.ok(config.token == null);
 });
 
-test("EikConfig: .token: single token present: config given", (t) => {
+test("EikConfig: .token: single token present: config given", () => {
 	const config = new EikConfig(validEikConfig, [["http://server", "muffins"]]);
-	t.equal(
+	assert.strictEqual(
 		config.server,
 		"http://server",
 		"server should be provided from config",
 	);
-	t.equal(config.token, "muffins", "token should match given token");
-	t.end();
+	assert.strictEqual(config.token, "muffins", "token should match given token");
 });
 
-test("EikConfig: .token: single token present", (t) => {
+test("EikConfig: .token: single token present", () => {
 	const config = new EikConfig(null, [["http://server", "muffins"]]);
-	t.equal(
+	assert.strictEqual(
 		config.server,
 		"http://server",
 		"server should be provided from tokens",
 	);
-	t.equal(config.token, "muffins", "token should match given token");
-	t.end();
+	assert.strictEqual(config.token, "muffins", "token should match given token");
 });
 
-test("EikConfig: .token: multiple tokens present", (t) => {
+test("EikConfig: .token: multiple tokens present", () => {
 	const config = new EikConfig(null, [
 		["http://server", "muffins"],
 		["http://server2", "cupcakes"],
 	]);
-	t.equal(config.server, "http://server");
-	t.equal(config.token, "muffins", "token should match first given token");
-	t.end();
+	assert.strictEqual(config.server, "http://server");
+	assert.strictEqual(
+		config.token,
+		"muffins",
+		"token should match first given token",
+	);
 });

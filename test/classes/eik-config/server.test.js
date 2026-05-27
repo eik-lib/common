@@ -1,4 +1,5 @@
-import { test } from "tap";
+import { test } from "node:test";
+import assert from "node:assert/strict";
 import EikConfig from "../../../lib/classes/eik-config.js";
 
 const validEikConfig = {
@@ -8,25 +9,23 @@ const validEikConfig = {
 	version: "0.0.0",
 };
 
-test("EikConfig: .server: accessing property", (t) => {
+test("EikConfig: .server: accessing property", () => {
 	const config = new EikConfig(validEikConfig);
-	t.equal(
+	assert.strictEqual(
 		config.server,
 		"http://server",
 		"should equal value given to constructor",
 	);
-	t.end();
 });
 
-test("EikConfig: .server: accessing property: no config given", (t) => {
+test("EikConfig: .server: accessing property: no config given", () => {
 	const config = new EikConfig(null, [
 		["http://bakery", "muffins"],
 		["http://server", "kumara pie"],
 	]);
-	t.equal(
+	assert.strictEqual(
 		config.server,
 		"http://bakery",
 		"should fallback to value given to tokens",
 	);
-	t.end();
 });

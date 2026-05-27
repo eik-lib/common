@@ -1,4 +1,5 @@
-import { test } from "tap";
+import { test } from "node:test";
+import assert from "node:assert/strict";
 import EikConfig from "../../../lib/classes/eik-config.js";
 
 const validEikConfig = {
@@ -8,13 +9,16 @@ const validEikConfig = {
 	version: "0.0.0",
 };
 
-test("EikConfig: .out: no value given", (t) => {
-	t.equal(new EikConfig(validEikConfig).out, ".eik", "should default to .eik");
-	t.end();
+test("EikConfig: .out: no value given", () => {
+	assert.strictEqual(
+		new EikConfig(validEikConfig).out,
+		".eik",
+		"should default to .eik",
+	);
 });
 
-test("EikConfig: .out: value pizza-box given", (t) => {
-	t.equal(
+test("EikConfig: .out: value pizza-box given", () => {
+	assert.strictEqual(
 		new EikConfig({
 			...validEikConfig,
 			out: "pizza-box",
@@ -22,11 +26,10 @@ test("EikConfig: .out: value pizza-box given", (t) => {
 		"pizza-box",
 		"should be set to ./pizza-box",
 	);
-	t.end();
 });
 
-test("EikConfig: .out: value pizza-box/ given", (t) => {
-	t.equal(
+test("EikConfig: .out: value pizza-box/ given", () => {
+	assert.strictEqual(
 		new EikConfig({
 			...validEikConfig,
 			out: "pizza-box/",
@@ -34,11 +37,10 @@ test("EikConfig: .out: value pizza-box/ given", (t) => {
 		"pizza-box",
 		"should have trailing slash removed",
 	);
-	t.end();
 });
 
-test("EikConfig: .out: value ./pizza-box given", (t) => {
-	t.equal(
+test("EikConfig: .out: value ./pizza-box given", () => {
+	assert.strictEqual(
 		new EikConfig({
 			...validEikConfig,
 			out: "./pizza-box",
@@ -46,5 +48,4 @@ test("EikConfig: .out: value ./pizza-box given", (t) => {
 		"pizza-box",
 		"should have leading ./ slash removed",
 	);
-	t.end();
 });

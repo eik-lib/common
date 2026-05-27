@@ -1,11 +1,12 @@
-import { test } from "tap";
+import { test } from "node:test";
+import assert from "node:assert/strict";
 import schemas from "../../lib/schemas/index.js";
 
-const { assert } = schemas;
+const { assert: schemaAssert } = schemas;
 
-test("assert basic eik JSON file", (t) => {
-	t.doesNotThrow(() => {
-		assert.eikJSON({
+test("assert basic eik JSON file", () => {
+	assert.doesNotThrow(() => {
+		schemaAssert.eikJSON({
 			name: "my-app-name",
 			version: "1.0.0",
 			server: "http://localhost:4001",
@@ -15,10 +16,9 @@ test("assert basic eik JSON file", (t) => {
 			},
 		});
 	});
-	t.end();
 });
 
-test("assert eik JSON file - mutation does not occur", (t) => {
+test("assert eik JSON file - mutation does not occur", () => {
 	const data = {
 		name: "my-app-name",
 		version: "1.0.0",
@@ -29,9 +29,9 @@ test("assert eik JSON file - mutation does not occur", (t) => {
 		},
 	};
 
-	assert.eikJSON(data);
+	schemaAssert.eikJSON(data);
 
-	t.same(data, {
+	assert.deepStrictEqual(data, {
 		name: "my-app-name",
 		version: "1.0.0",
 		server: "http://localhost:4001",
@@ -40,172 +40,148 @@ test("assert eik JSON file - mutation does not occur", (t) => {
 			"index.css": "./assets/styles.css",
 		},
 	});
-	t.end();
 });
 
-test("assert asset manifest - all props invalid", (t) => {
-	t.throws(() => {
+test("assert asset manifest - all props invalid", () => {
+	assert.throws(() => {
 		// @ts-expect-error Testing bad input
-		assert.eikJSON({
+		schemaAssert.eikJSON({
 			name: "",
 		});
 	});
-	t.end();
 });
 
-test("assert name: empty string", (t) => {
-	t.throws(() => {
-		assert.name("");
+test("assert name: empty string", () => {
+	assert.throws(() => {
+		schemaAssert.name("");
 	});
-	t.end();
 });
 
-test("assert name: valid", (t) => {
-	t.doesNotThrow(() => {
-		assert.name("@finn-no/my-app");
+test("assert name: valid", () => {
+	assert.doesNotThrow(() => {
+		schemaAssert.name("@finn-no/my-app");
 	});
-	t.end();
 });
 
-test("assert name: invalid by assert-npm-package-name module", (t) => {
-	t.throws(() => {
-		assert.name("@finn-no/my-app~");
+test("assert name: invalid by assert-npm-package-name module", () => {
+	assert.throws(() => {
+		schemaAssert.name("@finn-no/my-app~");
 	});
-	t.end();
 });
 
-test("assert version: empty string", (t) => {
-	t.throws(() => {
-		assert.version("");
+test("assert version: empty string", () => {
+	assert.throws(() => {
+		schemaAssert.version("");
 	});
-	t.end();
 });
 
-test("assert version: valid", (t) => {
-	t.doesNotThrow(() => {
-		assert.version("1.0.0");
+test("assert version: valid", () => {
+	assert.doesNotThrow(() => {
+		schemaAssert.version("1.0.0");
 	});
-	t.end();
 });
 
-test("assert type: invalid", (t) => {
-	t.plan(1);
+test("assert type: invalid", () => {
 	try {
-		assert.type("foo");
+		schemaAssert.type("foo");
 	} catch (err) {
-		t.equal(
+		assert.strictEqual(
 			err instanceof Error ? err.message : String(err),
 			'Parameter "type" is not valid: must be equal to one of the allowed values ("package", "npm", "map", "image")',
 		);
 	}
-	t.end();
 });
 
-test("assert type: valid - package", (t) => {
-	t.doesNotThrow(() => {
-		assert.type("package");
+test("assert type: valid - package", () => {
+	assert.doesNotThrow(() => {
+		schemaAssert.type("package");
 	});
-	t.end();
 });
 
-test("assert type: valid - npm", (t) => {
-	t.doesNotThrow(() => {
-		assert.type("npm");
+test("assert type: valid - npm", () => {
+	assert.doesNotThrow(() => {
+		schemaAssert.type("npm");
 	});
-	t.end();
 });
 
-test("assert type: valid - map", (t) => {
-	t.doesNotThrow(() => {
-		assert.type("map");
+test("assert type: valid - map", () => {
+	assert.doesNotThrow(() => {
+		schemaAssert.type("map");
 	});
-	t.end();
 });
 
-test("assert version: invalid by node-semver module", (t) => {
-	t.throws(() => {
-		assert.version("1.0");
+test("assert version: invalid by node-semver module", () => {
+	assert.throws(() => {
+		schemaAssert.version("1.0");
 	});
-	t.end();
 });
 
-test("assert server: valid", (t) => {
-	t.doesNotThrow(() => {
-		assert.server("http://localhost:4000");
+test("assert server: valid", () => {
+	assert.doesNotThrow(() => {
+		schemaAssert.server("http://localhost:4000");
 	});
-	t.end();
 });
 
-test("assert server: invalid", (t) => {
-	t.throws(() => {
-		assert.server("localhost");
+test("assert server: invalid", () => {
+	assert.throws(() => {
+		schemaAssert.server("localhost");
 	});
-	t.end();
 });
 
-test("assert files: valid", (t) => {
-	t.doesNotThrow(() => {
-		assert.files({ "index.js": "/path/to/file.js" });
+test("assert files: valid", () => {
+	assert.doesNotThrow(() => {
+		schemaAssert.files({ "index.js": "/path/to/file.js" });
 	});
-	t.end();
 });
 
-test("assert files: invalid", (t) => {
-	t.throws(() => {
+test("assert files: invalid", () => {
+	assert.throws(() => {
 		// @ts-expect-error Testing bad input
-		assert.files({ asd: 1 });
+		schemaAssert.files({ asd: 1 });
 	});
-	t.end();
 });
 
-test("assert files: invalid", (t) => {
-	t.throws(() => {
-		assert.files({});
+test("assert files: invalid (empty object)", () => {
+	assert.throws(() => {
+		schemaAssert.files({});
 	});
-	t.end();
 });
 
-test("assert importMap: valid string", (t) => {
-	t.doesNotThrow(() => {
-		assert.importMap("http://myimportmap/file.json");
+test("assert importMap: valid string", () => {
+	assert.doesNotThrow(() => {
+		schemaAssert.importMap("http://myimportmap/file.json");
 	});
-	t.end();
 });
 
-test("assert importMap: valid array", (t) => {
-	t.doesNotThrow(() => {
-		assert.importMap([
+test("assert importMap: valid array", () => {
+	assert.doesNotThrow(() => {
+		schemaAssert.importMap([
 			"http://myimportmap/file1.json",
 			"http://myimportmap/file2.json",
 		]);
 	});
-	t.end();
 });
 
-test("assert importMap: invalid string", (t) => {
-	t.throws(() => {
-		assert.importMap("");
+test("assert importMap: invalid string", () => {
+	assert.throws(() => {
+		schemaAssert.importMap("");
 	});
-	t.end();
 });
 
-test("assert importMap: invalid array", (t) => {
-	t.throws(() => {
-		assert.importMap([""]);
+test("assert importMap: invalid array", () => {
+	assert.throws(() => {
+		schemaAssert.importMap([""]);
 	});
-	t.end();
 });
 
-test("assert out: valid", (t) => {
-	t.doesNotThrow(() => {
-		assert.out("./.eik");
+test("assert out: valid", () => {
+	assert.doesNotThrow(() => {
+		schemaAssert.out("./.eik");
 	});
-	t.end();
 });
 
-test("assert out: invalid", (t) => {
-	t.throws(() => {
-		assert.out("");
+test("assert out: invalid", () => {
+	assert.throws(() => {
+		schemaAssert.out("");
 	});
-	t.end();
 });

@@ -1,7 +1,8 @@
-import { test } from "tap";
+import { test } from "node:test";
+import assert from "node:assert/strict";
 import ResolvedFiles from "../../../lib/classes/resolved-files.js";
 
-test("ResolvedFiles: iterator for ./my/file.js", (t) => {
+test("ResolvedFiles: iterator for ./my/file.js", () => {
 	// @ts-ignore
 	const subject = new ResolvedFiles(["./my/file.js", "./my/file.css"], {
 		basePath: "/base/path",
@@ -9,10 +10,9 @@ test("ResolvedFiles: iterator for ./my/file.js", (t) => {
 	});
 
 	const files = [...subject];
-	t.equal(
+	assert.strictEqual(
 		files[0].relative,
 		"./my/file.js",
 		"should result in a valid absolute path",
 	);
-	t.end();
 });

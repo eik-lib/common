@@ -1,3 +1,10 @@
+## [5.1.28](https://github.com/eik-lib/common/compare/v5.1.27...v5.1.28) (2026-05-27)
+
+
+### Bug Fixes
+
+* Bump dependencies ([#455](https://github.com/eik-lib/common/issues/455)) ([fca4cbb](https://github.com/eik-lib/common/commit/fca4cbb16af46cb058f3b3bbfca11d9bccd46d71))
+
 ## [5.1.27](https://github.com/eik-lib/common/compare/v5.1.26...v5.1.27) (2026-05-22)
 
 

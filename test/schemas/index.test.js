@@ -1,9 +1,10 @@
-import { test } from "tap";
+import { test } from "node:test";
+import assert from "node:assert/strict";
 import schemas from "../../lib/schemas/index.js";
 
 const { validate } = schemas;
 
-test("validate basic eik JSON file", (t) => {
+test("validate basic eik JSON file", () => {
 	const result = validate.eikJSON({
 		name: "my-app-name",
 		version: "1.0.0",
@@ -13,177 +14,156 @@ test("validate basic eik JSON file", (t) => {
 			"index.css": "./assets/styles.css",
 		},
 	});
-	t.equal(result.value.type, "package");
-	t.equal(result.error, false);
-	t.end();
+	assert.strictEqual(result.value.type, "package");
+	assert.strictEqual(result.error, false);
 });
 
-test("validate asset manifest - all props invalid", (t) => {
+test("validate asset manifest - all props invalid", () => {
 	// @ts-expect-error Testing bad input
 	const result = validate.eikJSON({
 		name: "",
 	});
 
-	t.same(result.value, { name: "", type: "package" });
-	t.equal(
+	assert.deepStrictEqual(result.value, { name: "", type: "package" });
+	assert.strictEqual(
 		Array.isArray(result.error) ? result.error[0].message : undefined,
 		`must have required property 'server'`,
 	);
-	t.end();
 });
 
-test("validate name: empty string", (t) => {
+test("validate name: empty string", () => {
 	const result = validate.name("");
-	t.equal(result.value, "");
-	t.equal(result.error ? result.error.length : 0, 1);
-	t.end();
+	assert.strictEqual(result.value, "");
+	assert.strictEqual(result.error ? result.error.length : 0, 1);
 });
 
-test("validate name: valid", (t) => {
+test("validate name: valid", () => {
 	const result = validate.name("@finn-no/my-app");
-	t.equal(result.value, "@finn-no/my-app");
-	t.equal(result.error, false);
-	t.end();
+	assert.strictEqual(result.value, "@finn-no/my-app");
+	assert.strictEqual(result.error, false);
 });
 
-test("validate name: invalid by validate-npm-package-name module", (t) => {
+test("validate name: invalid by validate-npm-package-name module", () => {
 	const result = validate.name("@finn-no/my-app~");
-	t.equal(result.value, "@finn-no/my-app~");
-	t.equal(result.error ? result.error.length : 0, 1);
-	t.end();
+	assert.strictEqual(result.value, "@finn-no/my-app~");
+	assert.strictEqual(result.error ? result.error.length : 0, 1);
 });
 
-test("validate version: empty string", (t) => {
+test("validate version: empty string", () => {
 	const result = validate.version("");
-	t.equal(result.value, "");
-	t.equal(result.error ? result.error.length : 0, 1);
-	t.end();
+	assert.strictEqual(result.value, "");
+	assert.strictEqual(result.error ? result.error.length : 0, 1);
 });
 
-test("validate version: valid", (t) => {
+test("validate version: valid", () => {
 	const result = validate.version("1.0.0");
-	t.equal(result.value, "1.0.0");
-	t.equal(result.error, false);
-	t.end();
+	assert.strictEqual(result.value, "1.0.0");
+	assert.strictEqual(result.error, false);
 });
 
-test("validate type: empty string", (t) => {
+test("validate type: empty string", () => {
 	const result = validate.type("");
-	t.equal(result.value, "");
-	t.equal(result.error ? result.error.length : 0, 1);
-	t.equal(
+	assert.strictEqual(result.value, "");
+	assert.strictEqual(result.error ? result.error.length : 0, 1);
+	assert.strictEqual(
 		Array.isArray(result.error) ? result.error[0].message : undefined,
 		"must be equal to one of the allowed values",
 	);
-	t.end();
 });
 
-test("validate type: valid - package", (t) => {
+test("validate type: valid - package", () => {
 	const result = validate.type("package");
-	t.equal(result.value, "package");
-	t.equal(result.error, false);
-	t.end();
+	assert.strictEqual(result.value, "package");
+	assert.strictEqual(result.error, false);
 });
-test("validate type: valid - npm", (t) => {
+
+test("validate type: valid - npm", () => {
 	const result = validate.type("npm");
-	t.equal(result.value, "npm");
-	t.equal(result.error, false);
-	t.end();
+	assert.strictEqual(result.value, "npm");
+	assert.strictEqual(result.error, false);
 });
-test("validate type: valid - map", (t) => {
+
+test("validate type: valid - map", () => {
 	const result = validate.type("map");
-	t.equal(result.value, "map");
-	t.equal(result.error, false);
-	t.end();
+	assert.strictEqual(result.value, "map");
+	assert.strictEqual(result.error, false);
 });
 
-test("validate version: invalid by node-semver module", (t) => {
+test("validate version: invalid by node-semver module", () => {
 	const result = validate.version("1.0");
-	t.equal(result.value, "1.0");
-	t.equal(result.error ? result.error.length : 0, 1);
-	t.end();
+	assert.strictEqual(result.value, "1.0");
+	assert.strictEqual(result.error ? result.error.length : 0, 1);
 });
 
-test("validate server: valid", (t) => {
+test("validate server: valid", () => {
 	const result = validate.server("http://localhost:4000");
-	t.equal(result.value, "http://localhost:4000");
-	t.equal(result.error, false);
-	t.end();
+	assert.strictEqual(result.value, "http://localhost:4000");
+	assert.strictEqual(result.error, false);
 });
 
-test("validate server: invalid", (t) => {
+test("validate server: invalid", () => {
 	const result = validate.server("localhost");
-	t.equal(result.value, "localhost");
-	t.equal(result.error ? result.error.length : 0, 1);
-	t.end();
+	assert.strictEqual(result.value, "localhost");
+	assert.strictEqual(result.error ? result.error.length : 0, 1);
 });
 
-test("validate files: valid", (t) => {
+test("validate files: valid", () => {
 	const result = validate.files({ "index.js": "/path/to/file.js" });
-	t.same(result.value, { "index.js": "/path/to/file.js" });
-	t.equal(result.error, false);
-	t.end();
+	assert.deepStrictEqual(result.value, { "index.js": "/path/to/file.js" });
+	assert.strictEqual(result.error, false);
 });
 
-test("validate files: invalid", (t) => {
+test("validate files: invalid", () => {
 	// @ts-expect-error Testing bad input
 	const result = validate.files({ asd: 1 });
-	t.same(result.value, { asd: 1 });
-	t.equal(result.error ? result.error.length : 0, 3);
-	t.end();
+	assert.deepStrictEqual(result.value, { asd: 1 });
+	assert.strictEqual(result.error ? result.error.length : 0, 3);
 });
 
-test("validate files: invalid", (t) => {
+test("validate files: invalid (empty object)", () => {
 	const result = validate.files({});
-	t.same(result.value, {});
-	t.equal(result.error ? result.error.length : 0, 3);
-	t.end();
+	assert.deepStrictEqual(result.value, {});
+	assert.strictEqual(result.error ? result.error.length : 0, 3);
 });
 
-test("validate importMap: valid string", (t) => {
+test("validate importMap: valid string", () => {
 	const result = validate.importMap("http://myimportmap/file.json");
-	t.same(result.value, "http://myimportmap/file.json");
-	t.equal(result.error, false);
-	t.end();
+	assert.deepStrictEqual(result.value, "http://myimportmap/file.json");
+	assert.strictEqual(result.error, false);
 });
 
-test("validate importMap: valid array", (t) => {
+test("validate importMap: valid array", () => {
 	const result = validate.importMap([
 		"http://myimportmap/file1.json",
 		"http://myimportmap/file2.json",
 	]);
-	t.same(result.value, [
+	assert.deepStrictEqual(result.value, [
 		"http://myimportmap/file1.json",
 		"http://myimportmap/file2.json",
 	]);
-	t.equal(result.error, false);
-	t.end();
+	assert.strictEqual(result.error, false);
 });
 
-test("validate importMap: invalid string", (t) => {
+test("validate importMap: invalid string", () => {
 	const result = validate.importMap("");
-	t.same(result.value, "");
-	t.equal(result.error ? result.error.length : 0, 3);
-	t.end();
+	assert.deepStrictEqual(result.value, "");
+	assert.strictEqual(result.error ? result.error.length : 0, 3);
 });
 
-test("validate importMap: invalid array", (t) => {
+test("validate importMap: invalid array", () => {
 	const result = validate.importMap([""]);
-	t.same(result.value, [""]);
-	t.equal(result.error ? result.error.length : 0, 3);
-	t.end();
+	assert.deepStrictEqual(result.value, [""]);
+	assert.strictEqual(result.error ? result.error.length : 0, 3);
 });
 
-test("validate out: valid", (t) => {
+test("validate out: valid", () => {
 	const result = validate.out("./.eik");
-	t.same(result.value, "./.eik");
-	t.equal(result.error, false);
-	t.end();
+	assert.deepStrictEqual(result.value, "./.eik");
+	assert.strictEqual(result.error, false);
 });
 
-test("validate out: invalid", (t) => {
+test("validate out: invalid", () => {
 	const result = validate.out("");
-	t.same(result.value, "");
-	t.equal(result.error ? result.error.length : 0, 1);
-	t.end();
+	assert.deepStrictEqual(result.value, "");
+	assert.strictEqual(result.error ? result.error.length : 0, 1);
 });

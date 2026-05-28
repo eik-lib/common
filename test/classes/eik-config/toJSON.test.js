@@ -1,4 +1,5 @@
-import { test } from "tap";
+import { test } from "node:test";
+import assert from "node:assert/strict";
 import EikConfig from "../../../lib/classes/eik-config.js";
 
 const validEikConfig = {
@@ -8,12 +9,11 @@ const validEikConfig = {
 	version: "0.0.0",
 };
 
-test("EikConfig: .toJSON", (t) => {
+test("EikConfig: .toJSON", () => {
 	const config = new EikConfig(validEikConfig);
-	t.same(
+	assert.deepStrictEqual(
 		config.toJSON(),
 		validEikConfig,
 		"should serialize config given to constructor",
 	);
-	t.end();
 });

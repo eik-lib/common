@@ -1,4 +1,5 @@
-import { test } from "tap";
+import { test } from "node:test";
+import assert from "node:assert/strict";
 import EikConfig from "../../../lib/classes/eik-config.js";
 
 const validEikConfig = {
@@ -8,24 +9,22 @@ const validEikConfig = {
 	version: "0.0.0",
 };
 
-test("EikConfig: .validate(): no config given", (t) => {
-	t.plan(1);
+test("EikConfig: .validate(): no config given", () => {
 	try {
 		const config = new EikConfig(null);
 		config.validate();
 	} catch (err) {
-		t.match(
-			err instanceof Error ? err.message : String(err),
-			"Invalid eik.json schema",
+		assert.ok(
+			(err instanceof Error ? err.message : String(err)).includes(
+				"Invalid eik.json schema",
+			),
 			"should throw for invalid config",
 		);
 	}
-	t.end();
 });
 
-test("EikConfig: .validate(): no config given", (t) => {
+test("EikConfig: .validate(): no config given", () => {
 	const config = new EikConfig(validEikConfig);
 	config.validate();
-	t.ok(true, "should not throw when valid config is given");
-	t.end();
+	assert.ok(true, "should not throw when valid config is given");
 });

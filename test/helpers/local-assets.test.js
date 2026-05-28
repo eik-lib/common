@@ -2,7 +2,8 @@ import { fileURLToPath } from "node:url";
 import { dirname } from "node:path";
 import express from "express";
 import fastify from "fastify";
-import { test } from "tap";
+import { test } from "node:test";
+import assert from "node:assert/strict";
 import stoppable from "stoppable";
 import localAssets from "../../lib/helpers/local-assets.js";
 
@@ -40,7 +41,7 @@ class Server {
 	}
 }
 
-test("Setup development routes for express", async (t) => {
+test("Setup development routes for express", async () => {
 	const server = new Server();
 	await localAssets(server.app, __dirname);
 	await server.start();
@@ -64,15 +65,14 @@ test("Setup development routes for express", async (t) => {
 		),
 	);
 
-	t.equal(res1.status, 200);
-	t.equal(res2.status, 200);
-	t.equal(res3.status, 200);
-	t.equal(res4.status, 200);
+	assert.strictEqual(res1.status, 200);
+	assert.strictEqual(res2.status, 200);
+	assert.strictEqual(res3.status, 200);
+	assert.strictEqual(res4.status, 200);
 	await server.stop();
-	t.end();
 });
 
-test("Setup development routes for fastify", async (t) => {
+test("Setup development routes for fastify", async () => {
 	const server = fastify();
 	await localAssets(server, __dirname);
 	const address = await server.listen();
@@ -86,21 +86,18 @@ test("Setup development routes for fastify", async (t) => {
 		new URL("/pkg/my-app/1.0.0/assets/esm.js.map", address),
 	);
 
-	t.equal(res1.status, 200);
-	t.equal(res2.status, 200);
-	t.equal(res3.status, 200);
-	t.equal(res4.status, 200);
+	assert.strictEqual(res1.status, 200);
+	assert.strictEqual(res2.status, 200);
+	assert.strictEqual(res3.status, 200);
+	assert.strictEqual(res4.status, 200);
 	await server.close();
-	t.end();
 });
 
-test("Invalid app instance", async (t) => {
-	t.rejects(localAssets({}, __dirname));
-	t.end();
+test("Invalid app instance", async () => {
+	await assert.rejects(localAssets({}, __dirname));
 });
 
-test("Invalid eik.json string", async (t) => {
+test("Invalid eik.json string", async () => {
 	const server = fastify();
-	t.rejects(localAssets(server, ""));
-	t.end();
+	await assert.rejects(localAssets(server, ""));
 });

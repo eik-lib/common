@@ -1,4 +1,5 @@
-import { test } from "tap";
+import { test } from "node:test";
+import assert from "node:assert/strict";
 import EikConfig from "../../../lib/classes/eik-config.js";
 
 const validEikConfig = {
@@ -8,15 +9,13 @@ const validEikConfig = {
 	version: "0.0.0",
 };
 
-test("EikConfig: .version: accessing the property", (t) => {
+test("EikConfig: .version: accessing the property", () => {
 	const config = new EikConfig(validEikConfig);
-	t.equal(config.version, "0.0.0", "should return the given value");
-	t.end();
+	assert.strictEqual(config.version, "0.0.0", "should return the given value");
 });
 
-test("EikConfig: .version: setting the property value", (t) => {
+test("EikConfig: .version: setting the property value", () => {
 	const config = new EikConfig(validEikConfig);
 	config.version = "1.0.1";
-	t.equal(config.version, "1.0.1", "should return the given value");
-	t.end();
+	assert.strictEqual(config.version, "1.0.1", "should return the given value");
 });

@@ -12,19 +12,13 @@
     "types",
     "eikjson.d.ts"
   ],
-  "tap": {
-    "exclude": [
-      "test/**/*.d.ts",
-      "test/fixtures/**"
-    ]
-  },
   "scripts": {
-    "clean": "rimraf .tap node_modules types",
+    "clean": "node -e \"['.tap', 'node_modules', 'types'].forEach(d => require('fs').rmSync(d, {recursive: true, force: true}))\"",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "schema:types": "json2ts lib/schemas/eikjson.schema.json > eikjson.d.ts",
     "schema:outdated": "npm run schema:types && git diff --exit-code HEAD:eikjson.d.ts eikjson.d.ts",
-    "test": "tap  --disable-coverage --allow-empty-coverage",
+    "test": "node --test 'test/**/*.test.js'",
     "types": "run-s types:module types:test",
     "types:module": "tsc",
     "types:test": "tsc --project tsconfig.test.json"
@@ -54,6 +48,7 @@
     "@eik/semantic-release-config": "1.0.17",
     "@eik/typescript-config": "1.0.2",
     "@eik/eslint-config": "2.0.6",
+    "@types/node": "25.0.1",
     "@semantic-release/changelog": "6.0.3",
     "@semantic-release/git": "10.0.1",
     "@types/is-glob": "4.0.4",
@@ -65,10 +60,8 @@
     "json-schema-to-typescript": "15.0.4",
     "npm-run-all2": "9.0.1",
     "prettier": "3.8.3",
-    "rimraf": "6.1.3",
     "semantic-release": "25.0.3",
     "stoppable": "1.1.0",
-    "tap": "21.7.4",
     "typescript": "6.0.3"
   }
 }

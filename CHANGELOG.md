@@ -1,3 +1,10 @@
+## [5.1.31](https://github.com/eik-lib/common/compare/v5.1.30...v5.1.31) (2026-06-04)
+
+
+### Bug Fixes
+
+* **deps:** update dependency semver to v7.8.2 ([#460](https://github.com/eik-lib/common/issues/460)) ([322f78a](https://github.com/eik-lib/common/commit/322f78a69ec2d55bf26053103c260de763a90c97))
+
 ## [5.1.30](https://github.com/eik-lib/common/compare/v5.1.29...v5.1.30) (2026-05-31)
 
 

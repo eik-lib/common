@@ -1,3 +1,10 @@
+# [5.2.0](https://github.com/eik-lib/common/compare/v5.1.34...v5.2.0) (2026-08-19)
+
+
+### Features
+
+* add generation property to ReadFile for CAS write support ([#481](https://github.com/eik-lib/common/issues/481)) ([416744d](https://github.com/eik-lib/common/commit/416744d2136438fb7b705caa32e8f75116228612))
+
 ## [5.1.34](https://github.com/eik-lib/common/compare/v5.1.33...v5.1.34) (2026-06-20)
 
 

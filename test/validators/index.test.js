@@ -210,6 +210,42 @@ test(".extra() - valid values - should return value", () => {
 	assert.strictEqual(validators.extra("index.js"), "index.js");
 });
 
+test(".extra() - path traversal with .. - should throw", () => {
+	assert.throws(() => {
+		validators.extra("../../../etc/passwd");
+	}, /Parameter "extra" is not valid/);
+});
+
+test(".extra() - encoded path traversal %2F - should throw", () => {
+	assert.throws(() => {
+		validators.extra("..%2F..%2F..%2Fetc%2Fpasswd");
+	}, /Parameter "extra" is not valid/);
+});
+
+test(".extra() - double-encoded path traversal %252F - should throw", () => {
+	assert.throws(() => {
+		validators.extra("..%252F..%252F..%252F..%252F%255Crmssport.dk");
+	}, /Parameter "extra" is not valid/);
+});
+
+test(".extra() - backslash - should throw", () => {
+	assert.throws(() => {
+		validators.extra("..\\rmssport.dk");
+	}, /Parameter "extra" is not valid/);
+});
+
+test(".extra() - encoded backslash %5C - should throw", () => {
+	assert.throws(() => {
+		validators.extra("..%5Crmssport.dk");
+	}, /Parameter "extra" is not valid/);
+});
+
+test(".extra() - protocol-relative // - should throw", () => {
+	assert.throws(() => {
+		validators.extra("//rmssport.dk");
+	}, /Parameter "extra" is not valid/);
+});
+
 //
 // .semverType()
 //

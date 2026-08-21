@@ -1,3 +1,10 @@
+## [5.2.1](https://github.com/eik-lib/common/compare/v5.2.0...v5.2.1) (2026-08-21)
+
+
+### Bug Fixes
+
+* reject path traversal sequences in extras validator ([#482](https://github.com/eik-lib/common/issues/482)) ([310dcbf](https://github.com/eik-lib/common/commit/310dcbf4e1bf191e40fdf69a4aa8e2ecb2f74f3c))
+
 # [5.2.0](https://github.com/eik-lib/common/compare/v5.1.34...v5.2.0) (2026-08-19)
 
 
